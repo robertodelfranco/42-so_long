@@ -1,0 +1,8 @@
+{
+	"cmake.sourceDirectory": "/nfs/homes/rdel-fra/common-core-projects/Fdf/MLX42",
+	"cmake.ignoreCMakeListsMissing": true,
+	"files.associations": {
+		"*.ejs": "html",
+		"libft.h": "c"
+	}
+}
