@@ -6,11 +6,10 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:50:32 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/01/27 15:32:21 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:56:09 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
 
 // -----------------------------------------------------------------------------
 // Codam Coding College, Amsterdam @ 2022-2023 by W2Wizard.
@@ -19,6 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+# include "src/so_long.h"
 
 #define WIDTH 1024
 #define HEIGHT 864

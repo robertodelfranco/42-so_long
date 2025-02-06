@@ -14,6 +14,8 @@ HEADERS		=	-I $(current_lib)/Includes -I $(LIBMLX)/build -I Includes
 SRCS		=	./src/so_long.c \
 				./src/validate.c \
 				./src/window_images.c \
+				./src/player.c \
+				./src/utils.c \
 				./src/init.c \
 				./src/errors.c
 

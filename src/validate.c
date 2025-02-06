@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:56:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/06 11:55:01 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:23:14 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,24 @@ void	parse_map(t_game *game)
 	int	j;
 
 	i = 0;
-	while (game->map->map[i] != NULL)
+	while (i++, game->map->map[i] != NULL)
 	{
 		j = 0;
-		while (game->map->map[i][j] != '\0' && game->map->map[i][j] != '\n')
+		while (j++, game->map->map[i][j] != '\0' && game->map->map[i][j] != '\n')
 		{
 			if (game->map->map[i][j] == 'C')
 				game->map->c++;
 			if (game->map->map[i][j] == 'E')
 				game->map->e++;
+			if (game->map->map[i][j] == 'E')
+				set_exit_position(game, i, j);
 			if (game->map->map[i][j] == 'P')
-			{
 				game->map->p++;
-				game->player->x = j;
-				game->player->y = i;
-			}
+			if (game->map->map[i][j] == 'P')
+				set_player_position(game, i, j);
 			if (!ft_strchr("01CEP", game->map->map[i][j]))
 				message_error(EXIT_INVALID_CHAR, game);
-			j++;
 		}
-		i++;
 	}
 	verify_map(game);
 }
@@ -46,8 +44,6 @@ void	verify_map(t_game *game)
 {
 	game->map->height = ft_ptrlen(game->map->map);
 	game->map->width = ft_strlen(game->map->map[0]);
-	ft_printf("height: %d\n", game->map->height);
-	ft_printf("width: %d\n", game->map->width);
 	if (game->map->height == game->map->width)
 		message_error(EXIT_MUST_BE_RECTANGULAR, game);
 	if ((game->map->height * game->map->width) % game->map->height != 0)

@@ -4,6 +4,10 @@
 	"files.associations": {
 		"*.ejs": "html",
 		"libft.h": "c",
-		"cmath": "c"
-	}
+		"cmath": "c",
+		"so_long.h": "c"
+	},
+	"C_Cpp.intelliSenseEngine": "default",
+	"editor.parameterHints.enabled": true
+
 }

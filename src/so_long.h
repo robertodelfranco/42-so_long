@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/06 11:43:36 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:53:29 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # include "../current_lib/Includes/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
+
+# define WIDTH_WINDOW 640
+# define HEIGHT_WINDOW 480
+# define TILE 64
 
 # define EXIT_SUCCESS	0
 # define EXIT_INVALID_FILE	-2
@@ -33,8 +37,11 @@
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
+	mlx_texture_t	*player_text;
+	mlx_image_t		*player_img;
+	int				pos_x;
+	int				pos_y;
+	
 }		t_player;
 
 typedef struct s_map
@@ -45,6 +52,8 @@ typedef struct s_map
 	int			p;
 	int			c;
 	int			e;
+	int 		pos_x_e;
+	int 		pos_y_e;
 	int			moves;
 }		t_map;
 
@@ -52,10 +61,16 @@ typedef struct s_image
 {
 	mlx_texture_t	*floor_text;
 	mlx_image_t		*floor_img;
-	void	*wall;
-	void	*player;
-	void	*collectable;
-	void	*exit;
+	mlx_texture_t	*wall_text;
+	mlx_image_t		*wall_img;
+	mlx_texture_t	*low_text;
+	mlx_image_t		*low_img;
+	mlx_texture_t	*exit_text;
+	mlx_image_t		*exit_img;
+	mlx_texture_t	*final_exit_text;
+	mlx_image_t		*final_exit_img;
+	mlx_texture_t	*collectable_text;
+	mlx_image_t		*collectable_img;
 }		t_image;
 
 typedef struct s_game
@@ -81,8 +96,18 @@ void	free_and_close(t_game *game);
 void	init_map(t_map *map);
 void	init_images(t_game *game);
 void	init_program(t_game *game);
+void	init_images_again(t_game *game);
+
+// player //
+void	ft_player(void *param);
+void	set_hooks(t_game *game);
+void	move_player(t_game *game, int move_x, int move_y);
+
+// utils //
+void	set_exit_position(t_game *game, int i, int j);
+void	set_player_position(t_game *game, int i, int j);
 
 // window_images //
-void	put_images_in_window(t_game *game);
+void	put_images_in_window(void *param);
 
 #endif /* SO_LONG_H */
