@@ -3,6 +3,7 @@
 	"cmake.ignoreCMakeListsMissing": true,
 	"files.associations": {
 		"*.ejs": "html",
-		"libft.h": "c"
+		"libft.h": "c",
+		"cmath": "c"
 	}
 }

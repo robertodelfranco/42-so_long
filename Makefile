@@ -13,6 +13,8 @@ HEADERS		=	-I $(current_lib)/Includes -I $(LIBMLX)/build -I Includes
 
 SRCS		=	./src/so_long.c \
 				./src/validate.c \
+				./src/window_images.c \
+				./src/init.c \
 				./src/errors.c
 
 OBJS		=	${SRCS:.c=.o}

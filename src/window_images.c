@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   window_images.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 16:31:56 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/04 16:38:18 by rdel-fra         ###   ########.fr       */
+/*   Created: 2025/02/06 11:28:58 by rdel-fra          #+#    #+#             */
+/*   Updated: 2025/02/06 11:44:30 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/libft.h"
+#include "so_long.h"
 
-void	*my_realloc(void *ptr, size_t new_size)
+void	put_images_in_window(t_game *game)
 {
-    void *new_ptr;
+	int	i;
+	int	j;
 
-	if (ptr == NULL)
-		return malloc(new_size);
-    if (new_size == 0)
-    {
-        free(ptr);
-        return (NULL);
-    }
-    new_ptr = malloc(new_size);
-	if (new_ptr == NULL)
-		return NULL;
-	ft_memcpy(new_ptr, ptr, new_size);
-	free(ptr);
-    return (new_ptr);
+	i = 0;
+	while (game->map->map[i] != NULL)
+	{
+		j = 0;
+		while (game->map->map[i][j] != '\0')
+		{
+			ft_printf("1\n");
+			if (game->map->map[i][j] == '1')
+				mlx_image_to_window(game->mlx, game->img->floor_img, j * 32, i * 32);
+			j++;
+		}
+		i++;
+	}
 }
