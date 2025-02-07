@@ -40,10 +40,10 @@ void	init_images(t_game *game)
 	mlx_resize_image(game->img->wall_img, TILE, TILE);
 	if (!game->img->wall_img)
 		message_error(EXIT_INVALID_FILE, game);
-	game->img->low_text = mlx_load_png("textures/up_wall.png");
-	game->img->low_img = mlx_texture_to_image(game->mlx, game->img->low_text);
-	mlx_resize_image(game->img->low_img, TILE, TILE);
-	if (!game->img->low_img)
+	game->img->low_w_text = mlx_load_png("textures/low_wall.png");
+	game->img->low_w_img = mlx_texture_to_image(game->mlx, game->img->low_w_text);
+	mlx_resize_image(game->img->low_w_img, TILE, TILE);
+	if (!game->img->low_w_img)
 		message_error(EXIT_INVALID_FILE, game);
 	game->img->exit_text = mlx_load_png("textures/exit.png");
 	game->img->exit_img = mlx_texture_to_image(game->mlx, game->img->exit_text);
@@ -67,6 +67,13 @@ void	init_images_again(t_game *game)
 	game->player->player_text = mlx_load_png("textures/Warrior_Blue.png");
 	game->player->player_img = mlx_texture_to_image(game->mlx, game->player->player_text);
 	mlx_resize_image(game->player->player_img, TILE, TILE);
+	if (!game->player->player_text)
+		message_error(EXIT_INVALID_FILE, game);
+	game->img->low_f_text = mlx_load_png("textures/low_floor.png");
+	game->img->low_f_img = mlx_texture_to_image(game->mlx, game->img->low_f_text);
+	mlx_resize_image(game->img->low_f_img, 65, 65);
+	if (!game->img->low_f_img)
+		message_error(EXIT_INVALID_FILE, game);
 }
 
 void	init_map(t_map *map)
