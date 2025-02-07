@@ -18,6 +18,7 @@ void	ft_player(void *param)
 
 	game = param;
 	set_hooks(game);
+	put_images_to_window(game);
 }
 
 void	set_hooks(t_game *game)
