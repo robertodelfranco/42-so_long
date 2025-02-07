@@ -20,8 +20,8 @@ void	init_program(t_game *game)
 	game->mlx = mlx_init(game->map->width * TILE, game->map->height * TILE, "so_long", false);
 	init_images(game);
 	init_images_again(game);
+	put_images_in_window(game);
 	
-	mlx_loop_hook(game->mlx, put_images_in_window, game->mlx);
 	mlx_loop_hook(game->mlx, ft_player, game);
 
 	mlx_loop(game->mlx);
