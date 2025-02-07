@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:20:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/06 18:53:55 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/07 17:28:47 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	init_images(t_game *game)
 		message_error(EXIT_INVALID_FILE, game);
 	game->img->wall_text = mlx_load_png("textures/wall_grass.png");
 	game->img->wall_img = mlx_texture_to_image(game->mlx, game->img->wall_text);
-	mlx_resize_image(game->img->wall_img, TILE, TILE);
+	mlx_resize_image(game->img->wall_img, 69, 69);
 	if (!game->img->wall_img)
 		message_error(EXIT_INVALID_FILE, game);
 	game->img->low_w_text = mlx_load_png("textures/low_wall.png");
 	game->img->low_w_img = mlx_texture_to_image(game->mlx, game->img->low_w_text);
-	mlx_resize_image(game->img->low_w_img, TILE, TILE);
+	mlx_resize_image(game->img->low_w_img, 68, 68);
 	if (!game->img->low_w_img)
 		message_error(EXIT_INVALID_FILE, game);
 	game->img->exit_text = mlx_load_png("textures/exit.png");
@@ -69,9 +69,9 @@ void	init_images_again(t_game *game)
 	mlx_resize_image(game->player->player_img, TILE, TILE);
 	if (!game->player->player_text)
 		message_error(EXIT_INVALID_FILE, game);
-	game->img->low_f_text = mlx_load_png("textures/low_floor.png");
+	game->img->low_f_text = mlx_load_png("textures/lower_floor.png");
 	game->img->low_f_img = mlx_texture_to_image(game->mlx, game->img->low_f_text);
-	mlx_resize_image(game->img->low_f_img, 65, 65);
+	mlx_resize_image(game->img->low_f_img, 80, 80);
 	if (!game->img->low_f_img)
 		message_error(EXIT_INVALID_FILE, game);
 }
