@@ -63,8 +63,10 @@ typedef struct s_image
 	mlx_image_t		*floor_img;
 	mlx_texture_t	*wall_text;
 	mlx_image_t		*wall_img;
-	mlx_texture_t	*low_text;
-	mlx_image_t		*low_img;
+	mlx_texture_t	*low_w_text;
+	mlx_image_t		*low_w_img;
+	mlx_texture_t	*low_f_text;
+	mlx_image_t		*low_f_img;
 	mlx_texture_t	*exit_text;
 	mlx_image_t		*exit_img;
 	mlx_texture_t	*final_exit_text;
