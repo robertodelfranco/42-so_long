@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/07 17:26:29 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:40:02 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,12 @@ void	set_player_position(t_game *game, int i, int j);
 
 // window_images //
 void	put_images_in_window(void *param);
+
+// handle_cases //
+void	ft_handle_exit(t_game *game, int move_x, int move_y);
+void	ft_handle_final_exit(t_game *game, int move_x, int move_y);
+void	ft_handle_common_move(t_game *game, int move_x, int move_y);
+void	ft_handle_collectable(t_game *game, int move_x, int move_y);
+void	ft_handle_last_collectable(t_game *game, int move_x, int move_y);
 
 #endif /* SO_LONG_H */
