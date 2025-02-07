@@ -26,7 +26,7 @@ void	put_images_in_window(void *param)
 		while (j++, game->map->map[i][j] != '\0')
 		{
 			if (game->map->map[i][j] != 'C' && game->map->map[i][j] != 'E')
-				mlx_image_to_window(game->mlx, game->img->low_img, j * (TILE + 1), i * (TILE + 1));
+				mlx_image_to_window(game->mlx, game->img->low_img, j * TILE, i * TILE);
 			mlx_image_to_window(game->mlx, game->img->low_img, j * (TILE + 1), i * (TILE + 1));
 			if (game->map->map[i][j] == '1' && j != 0 && j != game->map->width - 1 && i != game->map->height - 1 && game->map->map[i + 1][j] != '1')
 				mlx_image_to_window(game->mlx, game->img->wall_img, j * TILE, i * TILE);
