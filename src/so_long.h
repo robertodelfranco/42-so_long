@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/07 18:40:02 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/07 19:01:12 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct s_player
 	mlx_image_t		*player_img;
 	int				pos_x;
 	int				pos_y;
-	
 }		t_player;
 
 typedef struct s_map
@@ -52,8 +51,8 @@ typedef struct s_map
 	int			p;
 	int			c;
 	int			e;
-	int 		pos_x_e;
-	int 		pos_y_e;
+	int			pos_x_e;
+	int			pos_y_e;
 	int			moves;
 }		t_map;
 

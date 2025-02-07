@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:28:58 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/07 18:51:58 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/07 19:00:22 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	put_images_in_window(void *param)
 {
 	t_game	*game;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	game = param;
 	i = -1;

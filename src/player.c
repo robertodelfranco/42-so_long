@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:41:07 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/07 18:33:41 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:56:13 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,5 @@ void	move_player(t_game *game, int move_x, int move_y)
 		ft_handle_final_exit(game, move_x, move_y);
 	else
 		ft_handle_common_move(game, move_x, move_y);
-
 	ft_printf("Moves: %d\n", game->map->moves);
 }

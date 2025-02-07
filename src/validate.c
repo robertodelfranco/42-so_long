@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:56:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/06 18:23:14 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:59:17 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ void	parse_map(t_game *game)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	while (i++, game->map->map[i] != NULL)
 	{
-		j = 0;
-		while (j++, game->map->map[i][j] != '\0' && game->map->map[i][j] != '\n')
+		j = -1;
+		while (j++, game->map->map[i][j] != '\0'
+			&& game->map->map[i][j] != '\n')
 		{
 			if (game->map->map[i][j] == 'C')
 				game->map->c++;
