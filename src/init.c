@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:20:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/07 18:55:52 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:49:10 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_images(t_game *game)
 		message_error(EXIT_INVALID_FILE, game);
 	game->img->final_exit_text = mlx_load_png("textures/final_exit.png");
 	game->img->final_exit_img = mlx_texture_to_image(game->mlx, game->img->final_exit_text);
-	mlx_resize_image(game->img->final_exit_img, TILE, 128);
+	mlx_resize_image(game->img->final_exit_img, TILE, TILE);
 	if (!game->img->final_exit_img)
 		message_error(EXIT_INVALID_FILE, game);
 }
@@ -64,7 +64,7 @@ void	init_images_again(t_game *game)
 		message_error(EXIT_INVALID_FILE, game);
 	game->player->player_text = mlx_load_png("textures/Warrior_Blue.png");
 	game->player->player_img = mlx_texture_to_image(game->mlx, game->player->player_text);
-	mlx_resize_image(game->player->player_img, TILE, TILE);
+	mlx_resize_image(game->player->player_img, 50, 50);
 	if (!game->player->player_text)
 		message_error(EXIT_INVALID_FILE, game);
 	game->img->low_f_text = mlx_load_png("textures/lower_floor.png");
