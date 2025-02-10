@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/10 18:50:27 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:27:20 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ typedef struct s_image
 	mlx_image_t		*collectable_img;
 	mlx_texture_t	*mushroom_text;
 	mlx_image_t		*mushroom_img;
+	mlx_texture_t	*tree_text;
+	mlx_image_t		*tree_img;
 }		t_image;
 
 typedef struct s_game
@@ -115,6 +117,7 @@ void	set_player_position(t_game *game, int i, int j);
 // window_images //
 void	put_images_in_window(void *param);
 void	put_mushroons(t_game *game);
+void	find_tile(t_game *game);
 
 // handle_cases //
 void	ft_handle_exit(t_game *game, int move_x, int move_y);

@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:20:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/10 18:02:32 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:31:58 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_program(t_game *game)
 	game->img = malloc(sizeof(t_image));
 	if (!game->img)
 		return ;
-	game->mlx = mlx_init(game->map->width * TILE, game->map->height * TILE, "so_long", false);
+	game->mlx = (mlx_t *)mlx_init(game->map->width * TILE, game->map->height * TILE, "so_long", false);
 	init_images(game);
 	init_images_again(game);
 	put_images_in_window(game);
@@ -70,12 +70,16 @@ void	init_images_again(t_game *game)
 		message_error(EXIT_INVALID_FILE, game);
 	game->img->low_f_text = mlx_load_png("textures/lower_floor.png");
 	game->img->low_f_img = mlx_texture_to_image(game->mlx, game->img->low_f_text);
-	mlx_resize_image(game->img->low_f_img, 64, 64);
 	if (!game->img->low_f_img)
 		message_error(EXIT_INVALID_FILE, game);
 	game->img->mushroom_text = mlx_load_png("textures/mushroom.png");
 	game->img->mushroom_img = mlx_texture_to_image(game->mlx, game->img->mushroom_text);
 	if (!game->img->mushroom_img)
+		message_error(EXIT_INVALID_FILE, game);
+	game->img->tree_text = mlx_load_png("textures/tree.png");
+	game->img->tree_img = mlx_texture_to_image(game->mlx, game->img->tree_text);
+	mlx_resize_image(game->img->tree_img, 90, 90);
+	if (!game->img->tree_img)
 		message_error(EXIT_INVALID_FILE, game);
 }
 

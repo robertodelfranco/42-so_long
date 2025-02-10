@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:28:58 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/10 18:44:17 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:33:07 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ void	put_images_in_window(void *param)
 		j = -1;
 		while (j++, game->map->map[i][j] != '\0')
 		{
-			if (game->map->map[i][j] == '1')
-				mlx_image_to_window(game->mlx, game->img->low_w_img, j * TILE, i * TILE);
-			else
-				mlx_image_to_window(game->mlx, game->img->low_f_img, j * (TILE + 1), i * (TILE + 1));
+			mlx_image_to_window(game->mlx, game->img->low_w_img, j * TILE, i * TILE);
 			if (game->map->map[i][j] == '1' && i == game->map->height - 1)
 				mlx_image_to_window(game->mlx, game->img->wall_img, j * TILE, i * TILE);
 			else if (game->map->map[i][j] == '1' && j != 0 && j != game->map->width - 1 && i != game->map->height - 1 && game->map->map[i + 1][j] != '1')
@@ -59,6 +56,7 @@ void	put_images_in_window(void *param)
 				mlx_image_to_window(game->mlx, game->img->floor_img, j * TILE, i * TILE);
 		}
 	}
+	find_tile(game);
 }
 
 void	put_mushroons(t_game *game)
@@ -87,5 +85,24 @@ void	put_mushroons(t_game *game)
 			mlx_image_to_window(game->mlx, game->img->mushroom_img, 0 * TILE, i * TILE);
 		else
 			mlx_image_to_window(game->mlx, game->img->mushroom_img, (game->map->width - 1) * TILE, i * TILE);
+	}
+}
+
+void	find_tile(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 1;
+	while (game->map->map[i][j])
+	{
+		if (game->map->map[i][game->map->width - j] == '0')
+		{
+			game->map->map[i][game->map->width - j] = 'T';
+			mlx_image_to_window(game->mlx, game->img->tree_img, (game->map->width - j) * TILE, i * TILE);
+			return ;
+		}
+		j++;
 	}
 }
