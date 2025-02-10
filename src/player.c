@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:41:07 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/10 15:37:36 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:48:48 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	set_hooks(mlx_key_data_t keydata, void *param)
 	if (keydata.action == MLX_PRESS)
 	{
 		if (keydata.key == MLX_KEY_ESCAPE)
-			mlx_close_window(game->mlx);
+			ft_clear_window(game->mlx);
 		else if (keydata.key == MLX_KEY_UP)
 			move_player(game, 0, -1);
 		else if (keydata.key == MLX_KEY_DOWN)

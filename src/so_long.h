@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/10 16:22:20 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:50:27 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "../current_lib/Includes/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
+# include <math.h>
 
 # define WIDTH_WINDOW 640
 # define HEIGHT_WINDOW 480
@@ -93,6 +94,7 @@ void	validate_map(char *file, t_game *game);
 // errors //
 void	message_error(short error_code, t_game *game);
 void	ft_free(char **ptr_matrix, int j);
+void	ft_clear_window(t_game *game);
 void	free_and_close(t_game *game);
 
 // init //
@@ -112,6 +114,7 @@ void	set_player_position(t_game *game, int i, int j);
 
 // window_images //
 void	put_images_in_window(void *param);
+void	put_mushroons(t_game *game);
 
 // handle_cases //
 void	ft_handle_exit(t_game *game, int move_x, int move_y);

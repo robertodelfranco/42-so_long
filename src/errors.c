@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:45:35 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/05 16:05:59 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:50:18 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,10 @@ void	ft_free(char **ptr_matrix, int j)
 		i++;
 	}
 	free(ptr_matrix);
+}
+
+void	ft_clear_window(t_game *game)
+{
+	mlx_close_window(game->mlx);
+	free_and_close(game);
 }

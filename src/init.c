@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:20:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/10 16:02:30 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:02:32 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_program(t_game *game)
 	init_images(game);
 	init_images_again(game);
 	put_images_in_window(game);
+	put_mushroons(game);
 	mlx_loop_hook(game->mlx, ft_player, game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
