@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/07 19:01:12 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:22:20 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct s_image
 	mlx_image_t		*final_exit_img;
 	mlx_texture_t	*collectable_text;
 	mlx_image_t		*collectable_img;
+	mlx_texture_t	*mushroom_text;
+	mlx_image_t		*mushroom_img;
 }		t_image;
 
 typedef struct s_game
@@ -101,8 +103,7 @@ void	init_images_again(t_game *game);
 
 // player //
 void	ft_player(void *param);
-void	set_hooks(t_game *game);
-void	ft_clear_window(t_game *game);
+void	set_hooks(mlx_key_data_t keydata, void *param);
 void	move_player(t_game *game, int move_x, int move_y);
 
 // utils //

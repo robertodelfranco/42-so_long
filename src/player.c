@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:41:07 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/07 18:56:13 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:37:36 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,27 @@ void	ft_player(void *param)
 	t_game	*game;
 
 	game = param;
-	set_hooks(game);
-	mlx_image_to_window(game->mlx, game->player->player_img, game->player->pos_x * TILE, game->player->pos_y * TILE);
+	mlx_key_hook(game->mlx, set_hooks, game);
+	mlx_image_to_window(game->mlx, game->player->player_img, game->player->pos_x * TILE + 7, game->player->pos_y * TILE + 7);
 }
 
-void	set_hooks(t_game *game)
+void	set_hooks(mlx_key_data_t keydata, void *param)
 {
-	if (mlx_is_key_down(game->mlx, 256))
-		mlx_close_window(game->mlx);
-	if (mlx_is_key_down(game->mlx, 265))
-		move_player(game, 0, -1);
-	if (mlx_is_key_down(game->mlx, 264))
-		move_player(game, 0, 1);
-	if (mlx_is_key_down(game->mlx, 263))
-		move_player(game, -1, 0);
-	if (mlx_is_key_down(game->mlx, 262))
-		move_player(game, 1, 0);
+	t_game *game = (t_game *)param;
+
+	if (keydata.action == MLX_PRESS)
+	{
+		if (keydata.key == MLX_KEY_ESCAPE)
+			mlx_close_window(game->mlx);
+		else if (keydata.key == MLX_KEY_UP)
+			move_player(game, 0, -1);
+		else if (keydata.key == MLX_KEY_DOWN)
+			move_player(game, 0, 1);
+		else if (keydata.key == MLX_KEY_LEFT)
+			move_player(game, -1, 0);
+		else if (keydata.key == MLX_KEY_RIGHT)
+			move_player(game, 1, 0);	
+	}
 }
 
 void	move_player(t_game *game, int move_x, int move_y)
