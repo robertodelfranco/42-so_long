@@ -65,8 +65,6 @@ typedef struct s_image
 	mlx_image_t		*wall_img;
 	mlx_texture_t	*low_w_text;
 	mlx_image_t		*low_w_img;
-	mlx_texture_t	*low_f_text;
-	mlx_image_t		*low_f_img;
 	mlx_texture_t	*exit_text;
 	mlx_image_t		*exit_img;
 	mlx_texture_t	*final_exit_text;
@@ -108,7 +106,7 @@ void	init_images_again(t_game *game);
 // player //
 void	ft_player(void *param);
 void	set_hooks(mlx_key_data_t keydata, void *param);
-void	move_player(t_game *game, int move_x, int move_y);
+void	move_player(t_game *game, int move_x, int move_y, t_player *player);
 
 // utils //
 void	set_exit_position(t_game *game, int i, int j);
@@ -120,10 +118,13 @@ void	put_mushroons(t_game *game);
 void	find_tile(t_game *game);
 
 // handle_cases //
-void	ft_handle_exit(t_game *game, int move_x, int move_y);
-void	ft_handle_final_exit(t_game *game, int move_x, int move_y);
-void	ft_handle_common_move(t_game *game, int move_x, int move_y);
-void	ft_handle_collectable(t_game *game, int move_x, int move_y);
-void	ft_handle_last_collectable(t_game *game, int move_x, int move_y);
+void	ft_handle_exit(t_game *game, int x, int y);
+void	ft_handle_final_exit(t_game *game, int x, int y);
+void	ft_handle_common_move(t_game *game, int x, int y);
+void	ft_handle_collectable(t_game *game, int x, int y);
+void	ft_handle_last_collectable(t_game *game, int x, int y);
+
+// handle_decorations //
+void	ft_handle_tree(t_game *game, int move_x, int move_y);
 
 #endif /* SO_LONG_H */
