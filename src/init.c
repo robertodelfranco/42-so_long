@@ -22,7 +22,7 @@ void	init_program(t_game *game)
 	init_images(game);
 	init_images_again(game);
 	put_images_in_window(game);
-	put_mushroons(game);
+	put_mushroons(game, game->img->mushroom_img);
 	mlx_loop_hook(game->mlx, ft_player, game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
