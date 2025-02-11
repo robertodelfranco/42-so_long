@@ -44,7 +44,7 @@ void	parse_map(t_game *game)
 void	verify_map(t_game *game)
 {
 	game->map->height = ft_ptrlen(game->map->map);
-	game->map->width = ft_strlen(game->map->map[0]);
+	game->map->width = ft_strlen(game->map->map[0]) - 1;
 	if (game->map->height == game->map->width)
 		message_error(EXIT_MUST_BE_RECTANGULAR, game);
 	if ((game->map->height * game->map->width) % game->map->height != 0)
