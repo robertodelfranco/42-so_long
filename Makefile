@@ -18,6 +18,7 @@ SRCS		=	./src/so_long.c \
 				./src/utils.c \
 				./src/init.c \
 				./src/handle_cases.c \
+				./src/handle_decorations.c \
 				./src/errors.c
 
 OBJS		=	${SRCS:.c=.o}
