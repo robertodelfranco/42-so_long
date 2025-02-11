@@ -113,9 +113,9 @@ void	set_exit_position(t_game *game, int i, int j);
 void	set_player_position(t_game *game, int i, int j);
 
 // window_images //
-void	put_images_in_window(void *param);
-void	put_mushroons(t_game *game);
-void	find_tile(t_game *game);
+void	put_mushroons(t_game *game, mlx_image_t *mushroom_img);
+void	mushroom_rand(t_game *game, int i, int flag);
+void	put_images_in_window(t_game *game);
 
 // handle_cases //
 void	ft_handle_exit(t_game *game, int x, int y);
@@ -126,5 +126,7 @@ void	ft_handle_last_collectable(t_game *game, int x, int y);
 
 // handle_decorations //
 void	ft_handle_tree(t_game *game, int move_x, int move_y);
+void	put_tree(t_game *game, int i, int j, int *flag);
+void	find_tile(t_game *game);
 
 #endif /* SO_LONG_H */
