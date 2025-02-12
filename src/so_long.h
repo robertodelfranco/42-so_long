@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 17:18:53 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 19:23:11 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ typedef struct s_player
 	int				total_frames;
 	int				pos_x;
 	int				pos_y;
-	double			move_delay;
+	double			frame_move_delay;
 	double			frame_time;
+	double			move_delay;
+	double			move_time;
 }		t_player;
 
 typedef struct s_map
@@ -111,13 +113,15 @@ void	init_program(t_game *game);
 void	init_images_again(t_game *game);
 
 // player //
-void render_player(t_game *game);
-double	get_delta_time(void);
+void	render_player(t_game *game);
 void	ft_player(void *param);
-void	set_hooks(mlx_key_data_t keydata, void *param);
+void	main_move(mlx_key_data_t keydata, void *param);
+void	set_hooks(mlx_key_data_t keydata, t_game *game, double delta_time);
 void	move_player(t_game *game, int move_x, int move_y, t_player *player);
 
 // utils //
+double	get_delta_time(void);
+double	get_delta_time_again(void);
 void	set_exit_position(t_game *game, int i, int j);
 void	set_player_position(t_game *game, int i, int j);
 
@@ -127,8 +131,8 @@ void	put_wall(t_game *game, int i, int j);
 void	put_images_in_window(t_game *game);
 
 // handle_cases //
+void	ft_handle_final_exit(t_game *game);
 void	ft_handle_exit(t_game *game, int x, int y);
-void	ft_handle_final_exit(t_game *game, int x, int y);
 void	ft_handle_common_move(t_game *game, int x, int y);
 void	ft_handle_collectable(t_game *game, int x, int y);
 void	ft_handle_last_collectable(t_game *game, int x, int y);

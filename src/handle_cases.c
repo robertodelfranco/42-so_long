@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:22:58 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 18:35:15 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:38:09 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,13 @@ void	ft_handle_exit(t_game *game, int x, int y)
 	game->player->pos_y += y;
 }
 
-void	ft_handle_final_exit(t_game *game, int x, int y)
+void	ft_handle_final_exit(t_game *game)
 {
 	game->map->map[game->player->pos_y][game->player->pos_x] = '0';
 	mlx_image_to_window(game->mlx,
 		game->img->floor_img, game->player->pos_x * TILE,
 		game->player->pos_y * TILE);
 	game->map->moves++;
-	game->player->pos_x += x;
-	game->player->pos_y += y;
 	ft_printf("Moves: %d\nYou won\n", game->map->moves);
 	mlx_close_window(game->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 18:23:32 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 17:25:23 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 19:11:15 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ void	set_exit_position(t_game *game, int i, int j)
 }
 
 double	get_delta_time(void)
+{
+	static double	last_time = 0;
+	double			current_time;
+	double			delta_time;
+
+	current_time = mlx_get_time();
+	delta_time = current_time - last_time;
+	last_time = current_time;
+	return (delta_time);
+}
+
+double	get_delta_time_again(void)
 {
 	static double	last_time = 0;
 	double			current_time;

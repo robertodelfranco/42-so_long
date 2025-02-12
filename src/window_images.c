@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:28:58 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 18:33:25 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 19:45:09 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ void	put_wall(t_game *game, int i, int j)
 			j * TILE, i * TILE);
 }
 
-void render_player(t_game *game)
+void	render_player(t_game *game)
 {
-    if (game->player->current_img)
-        mlx_delete_image(game->mlx, game->player->current_img);
-    game->player->current_img = mlx_texture_to_image(game->mlx, game->player->frames_text[game->player->current_frame]);
-    mlx_resize_image(game->player->current_img, 50, 50);
-    mlx_image_to_window(game->mlx, game->player->current_img, game->player->pos_x * TILE + 7, game->player->pos_y * TILE + 14);
+	if (game->player->current_img)
+		mlx_delete_image(game->mlx, game->player->current_img);
+	game->player->current_img = mlx_texture_to_image(game->mlx,
+			game->player->frames_text[game->player->current_frame]);
+	mlx_resize_image(game->player->current_img, 50, 50);
+	mlx_image_to_window(game->mlx, game->player->current_img,
+		game->player->pos_x * TILE + 7, game->player->pos_y * TILE + 14);
 }
 
 void	put_exits(t_game *game, int i, int j)
@@ -50,7 +52,6 @@ void	put_images_in_window(t_game *game)
 {
 	int		i;
 	int		j;
-
 
 	i = -1;
 	while (i++, game->map->map[i] != NULL)
