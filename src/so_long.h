@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 11:42:09 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:57:45 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../current_lib/Includes/ft_printf_bonus.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../current_lib/Includes/libft.h"
+# include <stdbool.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
@@ -113,8 +114,8 @@ void	set_exit_position(t_game *game, int i, int j);
 void	set_player_position(t_game *game, int i, int j);
 
 // window_images //
-void	put_mushroons(t_game *game, mlx_image_t *mushroom_img);
-void	mushroom_rand(t_game *game, int i, int flag);
+void	put_exits(t_game *game, int i, int j);
+void	put_wall(t_game *game, int i, int j);
 void	put_images_in_window(t_game *game);
 
 // handle_cases //
@@ -125,8 +126,10 @@ void	ft_handle_collectable(t_game *game, int x, int y);
 void	ft_handle_last_collectable(t_game *game, int x, int y);
 
 // handle_decorations //
+void	put_mushroons(t_game *game, mlx_image_t *mushroom_img);
 void	ft_handle_tree(t_game *game, int move_x, int move_y);
 void	put_tree(t_game *game, int i, int j, int *flag);
+void	mushroom_rand(t_game *game, int i, int flag);
 void	find_tile(t_game *game);
 
 #endif /* SO_LONG_H */

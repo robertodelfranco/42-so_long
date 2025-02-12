@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:56:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 11:25:52 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:03:54 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,7 @@ void	parse_map(t_game *game)
 			if (game->map->map[i][j] == 'C')
 				game->map->c++;
 			if (game->map->map[i][j] == 'E')
-				game->map->e++;
-			if (game->map->map[i][j] == 'E')
 				set_exit_position(game, i, j);
-			if (game->map->map[i][j] == 'P')
-				game->map->p++;
 			if (game->map->map[i][j] == 'P')
 				set_player_position(game, i, j);
 			if (!ft_strchr("01CEP", game->map->map[i][j]))
