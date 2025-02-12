@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:20:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/10 19:31:58 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:16:31 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	init_images(t_game *game)
 	game->img->exit_img = mlx_texture_to_image(game->mlx,
 			game->img->exit_text);
 	mlx_resize_image(game->img->exit_img, 40, 40);
-	game->img->final_exit_text = mlx_load_png("textures/final_exit.png");
+	game->img->final_exit_text = mlx_load_png("textures/house.png");
 	game->img->final_exit_img = mlx_texture_to_image(game->mlx,
 			game->img->final_exit_text);
 	mlx_resize_image(game->img->final_exit_img, TILE, TILE);
@@ -65,10 +65,10 @@ void	init_images_again(t_game *game)
 	game->img->mushroom_text = mlx_load_png("textures/mushroom.png");
 	game->img->mushroom_img = mlx_texture_to_image(game->mlx,
 			game->img->mushroom_text);
-	game->img->tree_text = mlx_load_png("textures/tree.png");
+	game->img->tree_text = mlx_load_png("textures/tree_a.png");
 	game->img->tree_img = mlx_texture_to_image(game->mlx,
 			game->img->tree_text);
-	mlx_resize_image(game->img->tree_img, TILE, TILE);
+	mlx_resize_image(game->img->tree_img, 64, 64);
 }
 
 void	init_map(t_map *map)

@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/10 19:27:20 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:27:25 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_game
 // validate //
 void	parse_map(t_game *game);
 void	verify_map(t_game *game);
+bool	check_line_size(t_game *game);
 void	validate_map(char *file, t_game *game);
 
 // errors //

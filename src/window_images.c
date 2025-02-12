@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:28:58 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/10 19:33:07 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:08:59 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	put_images_in_window(t_game *game)
 			if (game->map->map[i][j] == 'P')
 			{
 				mlx_image_to_window(game->mlx, game->img->floor_img, j * TILE, i * TILE);
-				mlx_image_to_window(game->mlx, game->player->player_img, j * TILE + 7, i * TILE + 7);
 			}
 			// put_collectables(game, i, j);
 			if (game->map->map[i][j] == 'C')

@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:56:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/07 18:59:17 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:27:58 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	parse_map(t_game *game)
 void	verify_map(t_game *game)
 {
 	game->map->height = ft_ptrlen(game->map->map);
-	game->map->width = ft_strlen(game->map->map[0]) - 1;
+	game->map->width = ft_strlen(game->map->map[0]);
 	if (game->map->height == game->map->width)
 		message_error(EXIT_MUST_BE_RECTANGULAR, game);
-	if ((game->map->height * game->map->width) % game->map->height != 0)
+	if (!check_line_size(game))
 		message_error(EXIT_LINE_SIZE, game);
 	if (game->map->height < 3 || game->map->width < 3)
 		message_error(EXIT_TOO_SHORT, game);
@@ -88,4 +88,22 @@ void	validate_map(char *file, t_game *game)
 	game->map->map = ft_split(lines, '\n');
 	free(lines);
 	parse_map(game);
+}
+
+bool	check_line_size(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map->map[i] != NULL)
+	{
+		j = 0;
+		while (game->map->map[i][j] != '\0')
+			j++;
+		if (j != game->map->width)
+			return (false);
+		i++;
+	}
+	return (true);
 }

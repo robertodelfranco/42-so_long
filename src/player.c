@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:41:07 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/10 18:48:48 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:08:49 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_player(void *param)
 	game = param;
 	mlx_key_hook(game->mlx, set_hooks, game);
 	mlx_image_to_window(game->mlx, game->player->player_img,
-		game->player->pos_x * TILE + 7, game->player->pos_y * TILE + 7);
+		game->player->pos_x * TILE + 7, game->player->pos_y * TILE + 14);
 }
 
 void	set_hooks(mlx_key_data_t keydata, void *param)
