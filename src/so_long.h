@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 11:57:45 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:18:53 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../current_lib/Includes/libft.h"
 # include <stdbool.h>
+# include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
@@ -37,10 +38,15 @@
 
 typedef struct s_player
 {
-	mlx_texture_t	*player_text;
-	mlx_image_t		*player_img;
+	mlx_texture_t	*frames_text[6];
+	mlx_image_t		*frames_img[6];
+	mlx_image_t		*current_img;
+	int				current_frame;
+	int				total_frames;
 	int				pos_x;
 	int				pos_y;
+	double			move_delay;
+	double			frame_time;
 }		t_player;
 
 typedef struct s_map
@@ -105,6 +111,8 @@ void	init_program(t_game *game);
 void	init_images_again(t_game *game);
 
 // player //
+void render_player(t_game *game);
+double	get_delta_time(void);
 void	ft_player(void *param);
 void	set_hooks(mlx_key_data_t keydata, void *param);
 void	move_player(t_game *game, int move_x, int move_y, t_player *player);
@@ -131,5 +139,9 @@ void	ft_handle_tree(t_game *game, int move_x, int move_y);
 void	put_tree(t_game *game, int i, int j, int *flag);
 void	mushroom_rand(t_game *game, int i, int flag);
 void	find_tile(t_game *game);
+
+// animations //
+void	load_animate_images(t_game *game);
+void	update_frame(t_game *game, double delta_time);
 
 #endif /* SO_LONG_H */

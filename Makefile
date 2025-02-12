@@ -19,6 +19,7 @@ SRCS		=	./src/so_long.c \
 				./src/init.c \
 				./src/handle_cases.c \
 				./src/handle_decorations.c \
+				./src/animations.c \
 				./src/errors.c
 
 OBJS		=	${SRCS:.c=.o}
@@ -51,6 +52,6 @@ fclean:	clean
 	@rm -rf ${NAME} ${NAME_BONUS}
 	@$(MAKE) -C $(LIBFT) fclean
 
-re: fclean all bonus
+re: fclean all
 
 .PHONY: all clean fclean re libft bonus

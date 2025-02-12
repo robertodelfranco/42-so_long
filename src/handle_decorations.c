@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_decorations.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:10:01 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/11 12:10:01 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/12 17:38:55 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ void	mushroom_rand(t_game *game, int i, int flag)
 	else
 	{
 		rand += 1;
-		mlx_image_to_window(game->mlx, game->img->mushroom_img,
-			(game->map->width - rand) * TILE, i * TILE);
+		if (game->map->map[i][game->map->width - rand] == '1')
+			mlx_image_to_window(game->mlx, game->img->mushroom_img,
+				(game->map->width - rand) * TILE, i * TILE);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:28:58 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 12:05:16 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:33:25 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ void	put_wall(t_game *game, int i, int j)
 			j * TILE, i * TILE);
 }
 
+void render_player(t_game *game)
+{
+    if (game->player->current_img)
+        mlx_delete_image(game->mlx, game->player->current_img);
+    game->player->current_img = mlx_texture_to_image(game->mlx, game->player->frames_text[game->player->current_frame]);
+    mlx_resize_image(game->player->current_img, 50, 50);
+    mlx_image_to_window(game->mlx, game->player->current_img, game->player->pos_x * TILE + 7, game->player->pos_y * TILE + 14);
+}
+
 void	put_exits(t_game *game, int i, int j)
 {
 	if (game->map->map[i][j] == 'E')
@@ -35,19 +44,13 @@ void	put_exits(t_game *game, int i, int j)
 		mlx_image_to_window(game->mlx, game->img->exit_img,
 			j * TILE + 12, i * TILE + 12);
 	}
-	if (game->map->map[i][j] == 'N')
-	{
-		mlx_image_to_window(game->mlx, game->img->floor_img,
-			j * TILE, i * TILE);
-		mlx_image_to_window(game->mlx, game->img->final_exit_img,
-			j * TILE, i * TILE - 64);
-	}
 }
 
 void	put_images_in_window(t_game *game)
 {
 	int		i;
 	int		j;
+
 
 	i = -1;
 	while (i++, game->map->map[i] != NULL)
@@ -60,7 +63,7 @@ void	put_images_in_window(t_game *game)
 			if (game->map->map[i][j] != '1')
 				mlx_image_to_window(game->mlx, game->img->floor_img,
 					j * TILE, i * TILE);
-			if (game->map->map[i][j] == 'E' || game->map->map[i][j] == 'N')
+			if (game->map->map[i][j] == 'E')
 				put_exits(game, i, j);
 			if (game->map->map[i][j] == 'C')
 				mlx_image_to_window(game->mlx, game->img->collectable_img,

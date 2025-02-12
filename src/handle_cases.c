@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:22:58 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/07 18:48:17 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:35:15 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_handle_exit(t_game *game, int x, int y)
 
 void	ft_handle_final_exit(t_game *game, int x, int y)
 {
-	game->map->map[game->player->pos_y + y][game->player->pos_x + x] = 'P';
 	game->map->map[game->player->pos_y][game->player->pos_x] = '0';
 	mlx_image_to_window(game->mlx,
 		game->img->floor_img, game->player->pos_x * TILE,
@@ -39,15 +38,12 @@ void	ft_handle_final_exit(t_game *game, int x, int y)
 	game->map->moves++;
 	game->player->pos_x += x;
 	game->player->pos_y += y;
-	ft_putstr_fd("Moves: ", 1);
-	ft_printf("%d\n", game->map->moves);
-	ft_putstr_fd("You won\n", 1);
+	ft_printf("Moves: %d\nYou won\n", game->map->moves);
 	mlx_close_window(game->mlx);
 }
 
 void	ft_handle_common_move(t_game *game, int x, int y)
 {
-	game->map->map[game->player->pos_y + y][game->player->pos_x + x] = 'P';
 	mlx_image_to_window(game->mlx, game->img->floor_img,
 		game->player->pos_x * TILE, game->player->pos_y * TILE);
 	if (game->map->map[game->player->pos_y][game->player->pos_x] == 'T')
@@ -65,7 +61,6 @@ void	ft_handle_common_move(t_game *game, int x, int y)
 
 void	ft_handle_collectable(t_game *game, int x, int y)
 {
-	game->map->map[game->player->pos_y + y][game->player->pos_x + x] = 'P';
 	mlx_image_to_window(game->mlx, game->img->floor_img,
 		game->player->pos_x * TILE, game->player->pos_y * TILE);
 	if (game->map->map[game->player->pos_y][game->player->pos_x] == 'T')
@@ -86,7 +81,6 @@ void	ft_handle_collectable(t_game *game, int x, int y)
 
 void	ft_handle_last_collectable(t_game *game, int x, int y)
 {
-	game->map->map[game->player->pos_y + y][game->player->pos_x + x] = 'P';
 	mlx_image_to_window(game->mlx, game->img->floor_img,
 		game->player->pos_x * TILE, game->player->pos_y * TILE);
 	if (game->map->map[game->player->pos_y][game->player->pos_x] == 'T')

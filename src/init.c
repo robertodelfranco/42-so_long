@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:20:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 11:46:22 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:28:52 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_program(t_game *game)
 	init_images_again(game);
 	put_images_in_window(game);
 	put_mushroons(game, game->img->mushroom_img);
+	mlx_key_hook(game->mlx, set_hooks, game);
 	mlx_loop_hook(game->mlx, ft_player, game);
 	mlx_loop(game->mlx);
 	mlx_close_window(game->mlx);
@@ -31,6 +32,7 @@ void	init_program(t_game *game)
 
 void	init_images(t_game *game)
 {
+	load_animate_images(game);
 	game->img->floor_text = mlx_load_png("textures/floor.png");
 	game->img->floor_img = mlx_texture_to_image(game->mlx,
 			game->img->floor_text);
@@ -65,11 +67,6 @@ void	init_images_again(t_game *game)
 			game->img->collectable_text);
 	mlx_resize_image(game->img->collectable_img, 24, 24);
 	mlx_delete_texture(game->img->collectable_text);
-	game->player->player_text = mlx_load_png("textures/Warrior_Blue.png");
-	game->player->player_img = mlx_texture_to_image(game->mlx,
-			game->player->player_text);
-	mlx_resize_image(game->player->player_img, 50, 50);
-	mlx_delete_texture(game->player->player_text);
 	game->img->mushroom_text = mlx_load_png("textures/mushroom.png");
 	game->img->mushroom_img = mlx_texture_to_image(game->mlx,
 			game->img->mushroom_text);
@@ -77,7 +74,7 @@ void	init_images_again(t_game *game)
 	game->img->tree_text = mlx_load_png("textures/tree_a.png");
 	game->img->tree_img = mlx_texture_to_image(game->mlx,
 			game->img->tree_text);
-	mlx_resize_image(game->img->tree_img, 64, 64);
+	mlx_resize_image(game->img->tree_img, TILE, TILE);
 	mlx_delete_texture(game->img->tree_text);
 }
 
