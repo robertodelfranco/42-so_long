@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:56:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 10:27:58 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:25:52 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	verify_map(t_game *game)
 {
 	game->map->height = ft_ptrlen(game->map->map);
 	game->map->width = ft_strlen(game->map->map[0]);
-	if (game->map->height == game->map->width)
-		message_error(EXIT_MUST_BE_RECTANGULAR, game);
 	if (!check_line_size(game))
 		message_error(EXIT_LINE_SIZE, game);
+	if (game->map->height == game->map->width)
+		message_error(EXIT_MUST_BE_RECTANGULAR, game);
 	if (game->map->height < 3 || game->map->width < 3)
 		message_error(EXIT_TOO_SHORT, game);
 	if ((game->map->height * game->map->width) < 15)
@@ -68,12 +68,12 @@ void	validate_map(char *file, t_game *game)
 	char	*aux;
 	int		fd;
 
-	lines = ft_strdup("");
 	if (!(ft_strnstr(file, ".ber", ft_strlen(file))))
 		message_error(EXIT_INVALID_FILE, game);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		message_error(EXIT_INVALID_FILE, game);
+	lines = ft_strdup("");
 	while (1)
 	{
 		aux = get_next_line(fd);

@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:41:07 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 10:08:49 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:34:26 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,16 @@ void	set_hooks(mlx_key_data_t keydata, void *param)
 	t_game	*game;
 
 	game = (t_game *)param;
-	if (keydata.action == MLX_PRESS)
-	{
-		if (keydata.key == MLX_KEY_ESCAPE)
-			ft_clear_window(game->mlx);
-		else if (keydata.key == MLX_KEY_UP)
-			move_player(game, 0, -1, game->player);
-		else if (keydata.key == MLX_KEY_DOWN)
-			move_player(game, 0, 1, game->player);
-		else if (keydata.key == MLX_KEY_LEFT)
-			move_player(game, -1, 0, game->player);
-		else if (keydata.key == MLX_KEY_RIGHT)
-			move_player(game, 1, 0, game->player);
-	}
+	if (keydata.key == MLX_KEY_ESCAPE)
+		ft_clear_window(game->mlx);
+	else if (keydata.key == MLX_KEY_UP)
+		move_player(game, 0, -1, game->player);
+	else if (keydata.key == MLX_KEY_DOWN)
+		move_player(game, 0, 1, game->player);
+	else if (keydata.key == MLX_KEY_LEFT)
+		move_player(game, -1, 0, game->player);
+	else if (keydata.key == MLX_KEY_RIGHT)
+		move_player(game, 1, 0, game->player);
 }
 
 void	move_player(t_game *game, int x, int y, t_player *player)

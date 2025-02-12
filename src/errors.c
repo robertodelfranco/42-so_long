@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:45:35 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/10 19:04:39 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:41:52 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,20 @@ void	message_error(short error_code, t_game *game)
 		ft_putstr_fd("Error\nMap must have one player\n", STDERR_FILENO);
 	if (error_code == EXIT_MISSING_C)
 		ft_putstr_fd("Error\nMap must have collectables\n", STDERR_FILENO);
-	free_and_close(game);
+	if (error_code < -3)
+		free_and_close_error(game);
+	free(game->player);
+	free(game->map);
+	free(game);
+	exit(2);
+}
+
+void	free_and_close_error(t_game *game)
+{
+	ft_free(game->map->map, ft_ptrlen(game->map->map));
+	free(game->player);
+	free(game->map);
+	free(game);
 	exit(2);
 }
 
@@ -40,6 +53,7 @@ void	free_and_close(t_game *game)
 {
 	ft_free(game->map->map, ft_ptrlen(game->map->map));
 	free(game->player);
+	free(game->img);
 	free(game->map);
 	free(game);
 	exit(0);
