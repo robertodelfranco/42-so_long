@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 19:23:11 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/13 00:01:01 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,21 @@
 # define EXIT_MISSING_C	-9
 # define EXIT_LINE_SIZE -10
 
+typedef struct s_enemie
+{
+	mlx_texture_t	*frames_text[7];
+	mlx_image_t		*frames_img[7];
+	mlx_image_t		*current_img;
+	int				current_frame;
+	int				total_frames;
+	int				e;
+	int				pos_x;
+	int				pos_y;
+	double			frame_move_delay;
+	double			frame_time;
+	double			move_delay;
+	double			move_time;
+}			t_enemie;
 typedef struct s_player
 {
 	mlx_texture_t	*frames_text[6];
@@ -91,6 +106,7 @@ typedef struct s_game
 	t_map		*map;
 	t_image		*img;
 	t_player	*player;
+	t_enemie	*enemie;
 }		t_game;
 
 // validate //
@@ -147,5 +163,11 @@ void	find_tile(t_game *game);
 // animations //
 void	load_animate_images(t_game *game);
 void	update_frame(t_game *game, double delta_time);
+
+// enemie //
+void	ft_handle_enemie(t_game *game, int x, int y);
+void	load_enemie_animation(t_game *game);
+void	set_enemie_position(t_game *game, int i, int j);
+void	update_enemie_animation(t_game *game, double delta_time);
 
 #endif /* SO_LONG_H */

@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:20:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 19:23:56 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/12 21:11:28 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	init_images(t_game *game)
 void	init_images_again(t_game *game)
 {
 	load_animate_images(game);
+	load_enemie_animation(game);
 	game->img->collectable_text = mlx_load_png("textures/collectable.png");
 	game->img->collectable_img = mlx_texture_to_image(game->mlx,
 			game->img->collectable_text);

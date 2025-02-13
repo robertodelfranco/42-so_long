@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:41:07 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 19:26:19 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/13 00:03:58 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_player(void *param)
 	t_game	*game;
 	double	delta_time;
 
-	game = param;
 	delta_time = get_delta_time();
+	game = param;
 	update_frame(game, delta_time);
 	render_player(game);
 }

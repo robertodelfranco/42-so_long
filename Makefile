@@ -20,6 +20,7 @@ SRCS		=	./src/so_long.c \
 				./src/handle_cases.c \
 				./src/handle_decorations.c \
 				./src/animations.c \
+				./src/enemie.c \
 				./src/errors.c
 
 OBJS		=	${SRCS:.c=.o}
