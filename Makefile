@@ -21,6 +21,8 @@ SRCS		=	./src/so_long.c \
 				./src/handle_decorations.c \
 				./src/animations.c \
 				./src/enemie.c \
+				./src/flood_fill.c \
+				./src/clear_mlx.c \
 				./src/errors.c
 
 OBJS		=	${SRCS:.c=.o}

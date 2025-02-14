@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:56:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 13:47:09 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 19:37:22 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ void	parse_map(t_game *game)
 	int	j;
 
 	i = -1;
-	game->enemie->e = 0;
 	while (i++, game->map->map[i] != NULL)
 	{
 		j = -1;
 		while (j++, game->map->map[i][j] != '\0'
 			&& game->map->map[i][j] != '\n')
 		{
+			if (!is_closed(game, i, j))
+				message_error(EXIT_MAP_NOT_CLOSED, game);
 			if (game->map->map[i][j] == 'C')
 				game->map->c++;
 			if (game->map->map[i][j] == 'E')
@@ -58,6 +59,7 @@ void	verify_map(t_game *game)
 		message_error(EXIT_MISSING_P, game);
 	if (game->map->c < 1)
 		message_error(EXIT_MISSING_C, game);
+	copy_map(game);
 }
 
 void	validate_map(char *file, t_game *game)
@@ -68,7 +70,7 @@ void	validate_map(char *file, t_game *game)
 	int		fd;
 
 	if (!(ft_strnstr(file, ".ber", ft_strlen(file))))
-		message_error(EXIT_INVALID_FILE, game);
+		message_error(EXIT_INVALID_EXTENTION, game);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		message_error(EXIT_INVALID_FILE, game);
@@ -105,4 +107,17 @@ bool	check_line_size(t_game *game)
 		i++;
 	}
 	return (true);
+}
+
+int	is_closed(t_game *game, int i, int j)
+{
+	if (i == 0 || i < game->map->height - 1
+		|| j == 0 || j < game->map->width - 1)
+	{
+		if (game->map->map[i][j] == '0' || game->map->map[i][j] == 'C'
+			|| game->map->map[i][j] == 'E' || game->map->map[i][j] == 'P'
+				|| game->map->map[i][j] == 'I')
+			return (0);
+	}
+	return (1);
 }

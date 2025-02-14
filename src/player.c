@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:41:07 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 13:42:22 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 19:50:41 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ void	ft_player(void *param)
 	game = param;
 	update_frame(game, delta_time);
 	render_player(game);
+	if (game->enemie->e > 0
+		&& ft_strnstr(game->file, "mov", ft_strlen(game->file)))
+		update_enemy(game, delta_time);
+	if (game->player->pos_x == game->enemie->pos_x
+		&& game->player->pos_y == game->enemie->pos_y)
+		ft_handle_enemie(game);
 }
 
 void	update_frame(t_game *game, double delta_time)
@@ -50,7 +56,7 @@ void	set_hooks(mlx_key_data_t keydata, t_game *game, double delta_time)
 	{
 		game->player->move_time = 0;
 		game->player->move_time += delta_time;
-		game->player->move_delay = 0.035;
+		game->player->move_delay = 0.03;
 		if ((game->player->move_time >= game->player->move_delay
 				&& keydata.action == MLX_REPEAT) || keydata.action == MLX_PRESS)
 		{
@@ -70,13 +76,11 @@ void	set_hooks(mlx_key_data_t keydata, t_game *game, double delta_time)
 
 void	move_player(t_game *game, int x, int y, t_player *player)
 {
+	char	*moves;
+	char	*nb;
+
 	if (game->map->map[player->pos_y + y][player->pos_x + x] == '1')
 		return ;
-	if (game->map->map[player->pos_y + y][player->pos_x + x] == 'I')
-	{
-		ft_handle_enemie(game);
-		return ;
-	}
 	if (game->map->map[player->pos_y + y][player->pos_x + x] == 'C'
 			&& game->map->c == 1)
 		ft_handle_last_collectable(game, x, y);
@@ -87,11 +91,13 @@ void	move_player(t_game *game, int x, int y, t_player *player)
 	else if (game->map->map[player->pos_y + y][player->pos_x + x] == 'E')
 		ft_handle_exit(game, x, y);
 	else if (game->map->map[player->pos_y + y][player->pos_x + x] == 'N')
-	{
 		ft_handle_final_exit(game);
-		return ;
-	}
 	else
 		ft_handle_common_move(game, x, y);
-	ft_printf("Moves: %d\n", game->map->moves);
+	nb = ft_itoa(game->map->moves);
+	moves = ft_strjoin("Moves: ", nb);
+	mlx_image_to_window(game->mlx, game->img->ribbon_img, 0, 0 + 2);
+	mlx_put_string(game->mlx, moves, 46, 10);
+	free(moves);
+	free(nb);
 }

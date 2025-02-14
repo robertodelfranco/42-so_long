@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 18:23:32 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 19:11:15 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:54:14 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ void	set_exit_position(t_game *game, int i, int j)
 	game->map->p++;
 	game->map->pos_y_e = i;
 	game->map->pos_x_e = j;
+}
+
+int	ft_abs(int n)
+{
+	if (n < 0)
+		return (-n);
+	return (n);
 }
 
 double	get_delta_time(void)

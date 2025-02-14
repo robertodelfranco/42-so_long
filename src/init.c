@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:20:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 13:32:08 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 19:42:23 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_program(t_game *game)
 	mlx_key_hook(game->mlx, main_move, game);
 	mlx_loop_hook(game->mlx, ft_player, game);
 	mlx_loop(game->mlx);
-	mlx_close_window(game->mlx);
+	free_and_close(game);
 	mlx_terminate(game->mlx);
 }
 
@@ -77,6 +77,11 @@ void	init_images_again(t_game *game)
 			game->img->tree_text);
 	mlx_resize_image(game->img->tree_img, TILE, TILE);
 	mlx_delete_texture(game->img->tree_text);
+	game->img->ribbon_text = mlx_load_png("textures/ribbon.png");
+	game->img->ribbon_img = mlx_texture_to_image(game->mlx,
+			game->img->ribbon_text);
+	mlx_resize_image(game->img->ribbon_img, 192, 44);
+	mlx_delete_texture(game->img->ribbon_text);
 }
 
 void	init_map(t_map *map)

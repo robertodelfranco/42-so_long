@@ -5,7 +5,8 @@
 		"*.ejs": "html",
 		"libft.h": "c",
 		"cmath": "c",
-		"so_long.h": "c"
+		"so_long.h": "c",
+		"stdio.h": "c"
 	},
 	"C_Cpp.intelliSenseEngine": "default",
 	"editor.parameterHints.enabled": true

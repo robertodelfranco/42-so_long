@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:22:58 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 13:35:07 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 19:51:06 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	ft_handle_exit(t_game *game, int x, int y)
 {
-	mlx_image_to_window(game->mlx, game->img->floor_img,
-		game->player->pos_x * TILE, game->player->pos_y * TILE);
+	if (game->map->map[game->player->pos_y][game->player->pos_x] != '0')
+		mlx_image_to_window(game->mlx, game->img->floor_img,
+			game->player->pos_x * TILE, game->player->pos_y * TILE);
 	if (game->map->map[game->player->pos_y][game->player->pos_x] == 'T')
 		mlx_image_to_window(game->mlx, game->img->tree_img,
 			game->player->pos_x * TILE, game->player->pos_y * TILE);
@@ -36,20 +37,18 @@ void	ft_handle_final_exit(t_game *game)
 		game->img->floor_img, game->player->pos_x * TILE,
 		game->player->pos_y * TILE);
 	game->map->moves++;
-	ft_printf("Moves: %d\nYou won\n", game->map->moves);
 	mlx_close_window(game->mlx);
+	free_and_close(game);
 }
 
 void	ft_handle_common_move(t_game *game, int x, int y)
 {
-	mlx_image_to_window(game->mlx, game->img->floor_img,
-		game->player->pos_x * TILE, game->player->pos_y * TILE);
 	if (game->map->map[game->player->pos_y][game->player->pos_x] == 'T')
 		mlx_image_to_window(game->mlx, game->img->tree_img,
 			game->player->pos_x * TILE, game->player->pos_y * TILE);
-	else if (game->map->map[game->player->pos_y][game->player->pos_x] != 'E')
+	else if (game->map->map[game->player->pos_y][game->player->pos_x] == 'C')
 		game->map->map[game->player->pos_y][game->player->pos_x] = '0';
-	else
+	else if (game->map->map[game->player->pos_y][game->player->pos_x] == 'E')
 		mlx_image_to_window(game->mlx, game->img->exit_img,
 			game->player->pos_x * TILE + 17, game->player->pos_y * TILE + 34);
 	game->map->moves++;
@@ -59,8 +58,9 @@ void	ft_handle_common_move(t_game *game, int x, int y)
 
 void	ft_handle_collectable(t_game *game, int x, int y)
 {
-	mlx_image_to_window(game->mlx, game->img->floor_img,
-		game->player->pos_x * TILE, game->player->pos_y * TILE);
+	if (game->map->map[game->player->pos_y][game->player->pos_x] != '0')
+		mlx_image_to_window(game->mlx, game->img->floor_img,
+			game->player->pos_x * TILE, game->player->pos_y * TILE);
 	if (game->map->map[game->player->pos_y][game->player->pos_x] == 'T')
 		mlx_image_to_window(game->mlx, game->img->tree_img,
 			game->player->pos_x * TILE, game->player->pos_y * TILE);
@@ -79,8 +79,9 @@ void	ft_handle_collectable(t_game *game, int x, int y)
 
 void	ft_handle_last_collectable(t_game *game, int x, int y)
 {
-	mlx_image_to_window(game->mlx, game->img->floor_img,
-		game->player->pos_x * TILE, game->player->pos_y * TILE);
+	if (game->map->map[game->player->pos_y][game->player->pos_x] != '0')
+		mlx_image_to_window(game->mlx, game->img->floor_img,
+			game->player->pos_x * TILE, game->player->pos_y * TILE);
 	if (game->map->map[game->player->pos_y][game->player->pos_x] == 'T')
 		mlx_image_to_window(game->mlx, game->img->tree_img,
 			game->player->pos_x * TILE, game->player->pos_y * TILE);

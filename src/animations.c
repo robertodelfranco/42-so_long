@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:40:24 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 13:49:16 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:07:43 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void	load_animate_images(t_game *game)
 	game->player->current_img = game->player->frames_img[0];
 	game->player->total_frames = 6;
 	game->player->frame_time = 0;
-	game->player->frame_move_delay = 0.1;
+	game->player->frame_move_delay = 0.2;
 }

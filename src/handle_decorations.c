@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:10:01 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/14 13:45:17 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:29:07 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	put_tree(t_game *game, int i, int j, int *flag)
 {
 	if (game->map->map[i][j] == '0' && *flag == 0)
 	{
-		*flag = 2;
+		*flag = 1;
 		game->map->map[i][j] = 'T';
 		mlx_image_to_window(game->mlx, game->img->tree_img, j * TILE, i * TILE);
 	}

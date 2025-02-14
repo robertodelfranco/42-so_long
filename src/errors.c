@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:45:35 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 13:41:48 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:48:38 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	message_error(short error_code, t_game *game)
 		ft_putstr_fd("Error\nInvalid File\n", STDERR_FILENO);
 	if (error_code == EXIT_INVALID_EXTENTION)
 		ft_putstr_fd("Error\nInvalid File Extention\n", STDERR_FILENO);
+	if (error_code == EXIT_MAP_NOT_CLOSED)
+		ft_putstr_fd("Error\nMap not closed\n", STDERR_FILENO);
 	if (error_code == EXIT_INVALID_CHAR)
 		ft_putstr_fd("Error\nInvalid Character\n", STDERR_FILENO);
 	if (error_code == EXIT_MUST_BE_RECTANGULAR)
@@ -32,31 +34,31 @@ void	message_error(short error_code, t_game *game)
 		ft_putstr_fd("Error\nMap must have one player\n", STDERR_FILENO);
 	if (error_code == EXIT_MISSING_C)
 		ft_putstr_fd("Error\nMap must have collectables\n", STDERR_FILENO);
+	if (error_code == EXIT_NO_PATH)
+		ft_putstr_fd("Error\nNo path to the exit\n", STDERR_FILENO);
 	if (error_code < -3)
-		free_and_close_error(game);
+		free_and_close_error(game, error_code);
+	free_file(game);
+}
+
+void	free_file(t_game *game)
+{
 	free(game->player);
+	free(game->map);
+	free(game);
+	exit(1);
+}
+
+void	free_and_close_error(t_game *game, short error_code)
+{
+	ft_free(game->map->map, ft_ptrlen(game->map->map));
+	if (error_code == EXIT_NO_PATH || error_code == EXIT_MAP_NOT_CLOSED)
+		ft_free(game->map->map_copy, ft_ptrlen(game->map->map_copy));
+	free(game->player);
+	free(game->enemie);
 	free(game->map);
 	free(game);
 	exit(2);
-}
-
-void	free_and_close_error(t_game *game)
-{
-	ft_free(game->map->map, ft_ptrlen(game->map->map));
-	free(game->player);
-	free(game->map);
-	free(game);
-	exit(2);
-}
-
-void	free_and_close(t_game *game)
-{
-	ft_free(game->map->map, ft_ptrlen(game->map->map));
-	free(game->player);
-	free(game->img);
-	free(game->map);
-	free(game);
-	exit(0);
 }
 
 void	ft_free(char **ptr_matrix, int j)
@@ -70,9 +72,4 @@ void	ft_free(char **ptr_matrix, int j)
 		i++;
 	}
 	free(ptr_matrix);
-}
-
-void	ft_clear_window(t_game *game)
-{
-	free_and_close(game);
 }
