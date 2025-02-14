@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/13 00:01:01 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:38:07 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,9 +165,8 @@ void	load_animate_images(t_game *game);
 void	update_frame(t_game *game, double delta_time);
 
 // enemie //
-void	ft_handle_enemie(t_game *game, int x, int y);
+void	ft_handle_enemie(t_game *game);
 void	load_enemie_animation(t_game *game);
 void	set_enemie_position(t_game *game, int i, int j);
-void	update_enemie_animation(t_game *game, double delta_time);
 
 #endif /* SO_LONG_H */

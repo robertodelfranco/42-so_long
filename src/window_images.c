@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:28:58 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 22:48:16 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:49:40 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,17 @@ void	render_player(t_game *game)
 	mlx_resize_image(game->player->current_img, 50, 50);
 	mlx_image_to_window(game->mlx, game->player->current_img,
 		game->player->pos_x * TILE + 7, game->player->pos_y * TILE + 14);
-	if (game->enemie->current_img)
-		mlx_image_to_window(game->mlx, game->img->floor_img,
-			game->enemie->pos_x * TILE, game->enemie->pos_y * TILE);
-	game->enemie->current_img = mlx_texture_to_image(game->mlx,
-			game->enemie->frames_text[game->player->current_frame]);
-	mlx_resize_image(game->enemie->current_img, 50, 50);
-	mlx_image_to_window(game->mlx, game->enemie->current_img,
-		game->enemie->pos_x * TILE + 7, game->enemie->pos_y * TILE + 14);
+	if (game->enemie->e > 0)
+	{
+		if (game->enemie->current_img)
+			mlx_image_to_window(game->mlx, game->img->floor_img,
+				game->enemie->pos_x * TILE, game->enemie->pos_y * TILE);
+		game->enemie->current_img = mlx_texture_to_image(game->mlx,
+				game->enemie->frames_text[game->player->current_frame]);
+		mlx_resize_image(game->enemie->current_img, 50, 50);
+		mlx_image_to_window(game->mlx, game->enemie->current_img,
+			game->enemie->pos_x * TILE + 7, game->enemie->pos_y * TILE + 14);
+	}
 }
 
 void	put_exits(t_game *game, int i, int j)
@@ -52,7 +55,7 @@ void	put_exits(t_game *game, int i, int j)
 		mlx_image_to_window(game->mlx, game->img->floor_img,
 			j * TILE, i * TILE);
 		mlx_image_to_window(game->mlx, game->img->exit_img,
-			j * TILE + 12, i * TILE + 12);
+			j * TILE + 17, i * TILE + 34);
 	}
 }
 

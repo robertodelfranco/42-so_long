@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:22:58 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 18:38:09 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:35:07 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_handle_exit(t_game *game, int x, int y)
 		game->map->map[game->player->pos_y][game->player->pos_x] = '0';
 	else
 		mlx_image_to_window(game->mlx, game->img->exit_img,
-			game->player->pos_x * TILE + 12, game->player->pos_y * TILE + 12);
+			game->player->pos_x * TILE + 17, game->player->pos_y * TILE + 34);
 	game->map->moves++;
 	game->player->pos_x += x;
 	game->player->pos_y += y;
@@ -51,7 +51,7 @@ void	ft_handle_common_move(t_game *game, int x, int y)
 		game->map->map[game->player->pos_y][game->player->pos_x] = '0';
 	else
 		mlx_image_to_window(game->mlx, game->img->exit_img,
-			game->player->pos_x * TILE + 12, game->player->pos_y * TILE + 12);
+			game->player->pos_x * TILE + 17, game->player->pos_y * TILE + 34);
 	game->map->moves++;
 	game->player->pos_x += x;
 	game->player->pos_y += y;
@@ -68,7 +68,7 @@ void	ft_handle_collectable(t_game *game, int x, int y)
 		game->map->map[game->player->pos_y][game->player->pos_x] = '0';
 	else
 		mlx_image_to_window(game->mlx, game->img->exit_img,
-			game->player->pos_x * TILE + 12, game->player->pos_y * TILE + 12);
+			game->player->pos_x * TILE + 17, game->player->pos_y * TILE + 34);
 	game->player->pos_x += x;
 	game->player->pos_y += y;
 	mlx_image_to_window(game->mlx, game->img->floor_img,
@@ -88,7 +88,7 @@ void	ft_handle_last_collectable(t_game *game, int x, int y)
 		game->map->map[game->player->pos_y][game->player->pos_x] = '0';
 	else
 		mlx_image_to_window(game->mlx, game->img->exit_img,
-			game->player->pos_x * TILE + 12, game->player->pos_y * TILE + 12);
+			game->player->pos_x * TILE + 17, game->player->pos_y * TILE + 34);
 	game->player->pos_x += x;
 	game->player->pos_y += y;
 	mlx_image_to_window(game->mlx, game->img->floor_img,

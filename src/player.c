@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:41:07 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/13 00:03:58 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:42:22 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	set_hooks(mlx_key_data_t keydata, t_game *game, double delta_time)
 				&& keydata.action == MLX_REPEAT) || keydata.action == MLX_PRESS)
 		{
 			if (keydata.key == MLX_KEY_ESCAPE)
-				ft_clear_window(game->mlx);
+				mlx_close_window(game->mlx);
 			else if (keydata.key == MLX_KEY_UP)
 				move_player(game, 0, -1, game->player);
 			else if (keydata.key == MLX_KEY_DOWN)
@@ -72,6 +72,11 @@ void	move_player(t_game *game, int x, int y, t_player *player)
 {
 	if (game->map->map[player->pos_y + y][player->pos_x + x] == '1')
 		return ;
+	if (game->map->map[player->pos_y + y][player->pos_x + x] == 'I')
+	{
+		ft_handle_enemie(game);
+		return ;
+	}
 	if (game->map->map[player->pos_y + y][player->pos_x + x] == 'C'
 			&& game->map->c == 1)
 		ft_handle_last_collectable(game, x, y);

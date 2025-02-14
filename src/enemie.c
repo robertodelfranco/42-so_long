@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:58:20 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/13 00:03:29 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:46:11 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,17 @@ void	load_enemie_animation(t_game *game)
 	game->enemie->total_frames = 7;
 }
 
-// void	ft_handle_enemie(t_game *game)
-// {
-// 	game->map->moves++;
-// 	ft_printf("Game Over\n");
-// 	free_and_close(game);
-// }
+void	ft_handle_enemie(t_game *game)
+{
+	game->map->moves++;
+	ft_printf("Game Over\n");
+	free_and_close(game);
+	mlx_close_window(game->mlx);
+}
 
 void	set_enemie_position(t_game *game, int i, int j)
 {
-	game->enemie->e++;
+	game->enemie->e = 1;
 	game->enemie->pos_y = i;
 	game->enemie->pos_x = j;
 }

@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:10:01 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/12 17:38:55 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:45:17 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_handle_tree(t_game *game, int move_x, int move_y)
 		game->map->map[game->player->pos_y][game->player->pos_x] = '0';
 	else
 		mlx_image_to_window(game->mlx, game->img->exit_img,
-			game->player->pos_x * TILE + 12, game->player->pos_y * TILE + 12);
+			game->player->pos_x * TILE + 17, game->player->pos_y * TILE + 34);
 	game->map->moves++;
 	game->player->pos_x += move_x;
 	game->player->pos_y += move_y;
@@ -60,6 +60,8 @@ void	find_tile(t_game *game)
 		while (game->map->map[i][j] && j < game->map->width)
 		{
 			j += i;
+			if (j >= game->map->width)
+				break ;
 			put_tree(game, i, j, &flag);
 		}
 		flag = i % 2;

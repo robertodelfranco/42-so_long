@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:20:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/12 21:11:28 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:32:08 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_images(t_game *game)
 	game->img->exit_text = mlx_load_png("textures/exit.png");
 	game->img->exit_img = mlx_texture_to_image(game->mlx,
 			game->img->exit_text);
-	mlx_resize_image(game->img->exit_img, 40, 40);
+	mlx_resize_image(game->img->exit_img, 30, 30);
 	mlx_delete_texture(game->img->exit_text);
 	game->img->final_exit_text = mlx_load_png("textures/house.png");
 	game->img->final_exit_img = mlx_texture_to_image(game->mlx,
