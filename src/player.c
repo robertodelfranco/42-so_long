@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:41:07 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 19:50:41 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 20:47:19 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	ft_player(void *param)
 
 	delta_time = get_delta_time();
 	game = param;
+	if (game->game_over_flag == 1)
+		return ;
 	update_frame(game, delta_time);
 	render_player(game);
 	if (game->enemie->e > 0
@@ -62,13 +64,13 @@ void	set_hooks(mlx_key_data_t keydata, t_game *game, double delta_time)
 		{
 			if (keydata.key == MLX_KEY_ESCAPE)
 				mlx_close_window(game->mlx);
-			else if (keydata.key == MLX_KEY_UP)
+			else if (keydata.key == MLX_KEY_UP && game->game_over_flag == 0)
 				move_player(game, 0, -1, game->player);
-			else if (keydata.key == MLX_KEY_DOWN)
+			else if (keydata.key == MLX_KEY_DOWN && game->game_over_flag == 0)
 				move_player(game, 0, 1, game->player);
-			else if (keydata.key == MLX_KEY_LEFT)
+			else if (keydata.key == MLX_KEY_LEFT && game->game_over_flag == 0)
 				move_player(game, -1, 0, game->player);
-			else if (keydata.key == MLX_KEY_RIGHT)
+			else if (keydata.key == MLX_KEY_RIGHT && game->game_over_flag == 0)
 				move_player(game, 1, 0, game->player);
 		}	
 	}

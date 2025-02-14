@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:58:20 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 17:43:58 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 20:51:37 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,10 @@ void	load_enemie_animation(t_game *game)
 void	ft_handle_enemie(t_game *game)
 {
 	game->map->moves++;
+	mlx_image_to_window(game->mlx, game->img->game_over_img, (game->map->width * TILE) / 6, (game->map->height * TILE) / 3);
+	mlx_put_string(game->mlx, "GAME OVER", (game->map->width * TILE) / 2 - 45, (game->map->height * TILE) / 2 - 20);
+	game->game_over_flag = 1;
 	ft_printf("Game Over\n");
-	free_and_close(game);
-	mlx_close_window(game->mlx);
 }
 
 void	set_enemie_position(t_game *game, int i, int j)
@@ -51,6 +52,7 @@ void	set_enemie_position(t_game *game, int i, int j)
 	game->enemie->e = 1;
 	game->enemie->pos_y = i;
 	game->enemie->pos_x = j;
+	game->game_over_flag = 0;
 }
 
 void	ft_move_enemie(t_game *game, int dx, int dy, t_enemie *enemie)

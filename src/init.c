@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:20:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 19:42:23 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 20:43:40 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_program(t_game *game)
 			game->map->height * TILE, "so_long", false);
 	init_images(game);
 	init_images_again(game);
+	init_images_once_again(game);
 	put_images_in_window(game);
 	put_mushroons(game, game->img->mushroom_img);
 	mlx_key_hook(game->mlx, main_move, game);
@@ -82,6 +83,16 @@ void	init_images_again(t_game *game)
 			game->img->ribbon_text);
 	mlx_resize_image(game->img->ribbon_img, 192, 44);
 	mlx_delete_texture(game->img->ribbon_text);
+}
+
+void	init_images_once_again(t_game *game)
+{
+	game->img->game_over_text = mlx_load_png("textures/game_over.png");
+	game->img->game_over_img = mlx_texture_to_image(game->mlx,
+			game->img->game_over_text);
+	mlx_resize_image(game->img->game_over_img, ((game->map->width * TILE) / 3 )* 2,
+		(game->map->height * TILE) / 3);
+	mlx_delete_texture(game->img->game_over_text);
 }
 
 void	init_map(t_map *map)

@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 18:49:15 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/14 20:45:31 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ typedef struct s_image
 	mlx_image_t		*tree_img;
 	mlx_texture_t	*ribbon_text;
 	mlx_image_t		*ribbon_img;
+	mlx_texture_t	*game_over_text;
+	mlx_image_t		*game_over_img;
 }		t_image;
 
 typedef struct s_game
@@ -113,6 +115,7 @@ typedef struct s_game
 	t_player	*player;
 	t_enemie	*enemie;
 	int			enemie_flag;
+	int			game_over_flag;
 }		t_game;
 
 // validate //
@@ -133,6 +136,7 @@ void	init_map(t_map *map);
 void	init_images(t_game *game);
 void	init_program(t_game *game);
 void	init_images_again(t_game *game);
+void	init_images_once_again(t_game *game);
 
 // player //
 void	render_player(t_game *game);
