@@ -72,7 +72,7 @@ void	set_hooks(mlx_key_data_t keydata, t_game *game, double delta_time)
 				move_player(game, -1, 0, game->player);
 			else if (keydata.key == MLX_KEY_RIGHT && game->game_over_flag == 0)
 				move_player(game, 1, 0, game->player);
-		}	
+		}
 	}
 }
 

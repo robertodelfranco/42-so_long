@@ -90,9 +90,14 @@ void	init_images_once_again(t_game *game)
 	game->img->game_over_text = mlx_load_png("textures/game_over.png");
 	game->img->game_over_img = mlx_texture_to_image(game->mlx,
 			game->img->game_over_text);
-	mlx_resize_image(game->img->game_over_img, ((game->map->width * TILE) / 3 )* 2,
-		(game->map->height * TILE) / 3);
+	mlx_resize_image(game->img->game_over_img,
+		((game->map->width * TILE) / 3) * 2, (game->map->height * TILE) / 3);
 	mlx_delete_texture(game->img->game_over_text);
+	game->img->phrase_game_over_text = mlx_load_png("textures/phrase.png");
+	game->img->phrase_game_over_img = mlx_texture_to_image(game->mlx,
+			game->img->phrase_game_over_text);
+	mlx_resize_image(game->img->phrase_game_over_img,
+		((game->map->width * TILE) / 3) * 2, (game->map->height * TILE) / 3);
 }
 
 void	init_map(t_map *map)

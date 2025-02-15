@@ -104,6 +104,8 @@ typedef struct s_image
 	mlx_image_t		*ribbon_img;
 	mlx_texture_t	*game_over_text;
 	mlx_image_t		*game_over_img;
+	mlx_texture_t	*phrase_game_over_text;
+	mlx_image_t		*phrase_game_over_img;
 }		t_image;
 
 typedef struct s_game

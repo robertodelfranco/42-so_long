@@ -41,8 +41,10 @@ void	load_enemie_animation(t_game *game)
 void	ft_handle_enemie(t_game *game)
 {
 	game->map->moves++;
-	mlx_image_to_window(game->mlx, game->img->game_over_img, (game->map->width * TILE) / 6, (game->map->height * TILE) / 3);
-	mlx_put_string(game->mlx, "GAME OVER", (game->map->width * TILE) / 2 - 45, (game->map->height * TILE) / 2 - 20);
+	mlx_image_to_window(game->mlx, game->img->game_over_img,
+		(game->map->width * TILE) / 6, (game->map->height * TILE) / 3);
+	mlx_image_to_window(game->mlx, game->img->phrase_game_over_img,
+		(game->map->width * TILE) / 5, (game->map->height * TILE) / 3);
 	game->game_over_flag = 1;
 	ft_printf("Game Over\n");
 }
