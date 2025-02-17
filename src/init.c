@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:20:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/17 15:06:32 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:51:40 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	init_images_once_again(t_game *game)
 			game->img->phrase_game_over_text);
 	mlx_resize_image(game->img->phrase_game_over_img,
 		(game->map->width * TILE) / 4, (game->map->height * TILE) / 7);
+	mlx_delete_texture(game->img->phrase_game_over_text);
 }
 
 void	init_map(t_map *map)

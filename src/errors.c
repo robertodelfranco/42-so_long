@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:45:35 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 18:48:38 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:52:30 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	message_error(short error_code, t_game *game)
 
 void	free_file(t_game *game)
 {
+	free(game->dead);
+	free(game->enemie);
 	free(game->player);
 	free(game->map);
 	free(game);

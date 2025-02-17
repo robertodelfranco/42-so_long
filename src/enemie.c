@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:58:20 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/17 15:02:31 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:43:12 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_handle_enemie(t_game *game)
 		mlx_image_to_window(game->mlx, game->img->exit_img,
 			game->player->pos_x * TILE + 17, game->player->pos_y * TILE + 34);
 	mlx_image_to_window(game->mlx, game->img->game_over_img,
-		((game->map->width * TILE) - (game->map->width * TILE / 3 * 2)) / 2, ft_abs((game->map->height * TILE) - (game->map->height * TILE / 3)) / 2);
+		((game->map->width * TILE) - (game->map->width * TILE / 3 * 2)) / 2, ((game->map->height * TILE) - (game->map->height * TILE / 3)) / 2);
 	mlx_image_to_window(game->mlx, game->img->phrase_game_over_img,
 		((game->map->width * TILE) - (game->map->width * TILE / 4)) / 2, ((game->map->height * TILE) - (game->map->height * TILE / 4)) / 2);
 	game->game_over_flag = 1;
@@ -63,6 +63,7 @@ void	set_enemie_position(t_game *game, int i, int j)
 	game->enemie->pos_y = i;
 	game->enemie->pos_x = j;
 	game->game_over_flag = 0;
+	game->dead->move_time = 0;
 }
 
 void	ft_move_enemie(t_game *game, int dx, int dy, t_enemie *enemie)

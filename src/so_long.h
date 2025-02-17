@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/17 15:17:28 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:46:02 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@
 
 typedef struct s_dead
 {
-	mlx_texture_t	*dead_text[6];
-	mlx_image_t		*dead_img[6];
+	mlx_texture_t	*dead_text[5];
+	mlx_image_t		*dead_img[5];
 	mlx_image_t		*current_img;
+	double			frame_delay;
 	double			move_time;
 }			t_dead;
 
