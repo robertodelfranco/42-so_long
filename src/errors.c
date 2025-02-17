@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:45:35 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/17 15:52:30 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/17 18:23:39 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ void	free_file(t_game *game)
 void	free_and_close_error(t_game *game, short error_code)
 {
 	ft_free(game->map->map, ft_ptrlen(game->map->map));
-	if (error_code == EXIT_NO_PATH || error_code == EXIT_MAP_NOT_CLOSED)
+	if (error_code == EXIT_NO_PATH)
 		ft_free(game->map->map_copy, ft_ptrlen(game->map->map_copy));
+	free(game->dead);
 	free(game->player);
 	free(game->enemie);
 	free(game->map);

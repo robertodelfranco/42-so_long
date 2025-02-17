@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/17 15:46:02 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:34:32 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <stdbool.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <stdio.h>
-# include <math.h>
 
 # define TILE 64
 

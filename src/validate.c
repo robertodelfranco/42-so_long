@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:56:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 19:37:22 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/17 18:27:41 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parse_map(t_game *game)
 		while (j++, game->map->map[i][j] != '\0'
 			&& game->map->map[i][j] != '\n')
 		{
-			if (!is_closed(game, i, j))
+			if (is_closed(game, i, j) == 0)
 				message_error(EXIT_MAP_NOT_CLOSED, game);
 			if (game->map->map[i][j] == 'C')
 				game->map->c++;
@@ -111,12 +111,10 @@ bool	check_line_size(t_game *game)
 
 int	is_closed(t_game *game, int i, int j)
 {
-	if (i == 0 || i < game->map->height - 1
-		|| j == 0 || j < game->map->width - 1)
+	if (i == 0 || i == ft_ptrlen(game->map->map) - 1
+		|| j == 0 || j == ft_strlen(game->map->map[0]) - 1)
 	{
-		if (game->map->map[i][j] == '0' || game->map->map[i][j] == 'C'
-			|| game->map->map[i][j] == 'E' || game->map->map[i][j] == 'P'
-				|| game->map->map[i][j] == 'I')
+		if (game->map->map[i][j] != '1')
 			return (0);
 	}
 	return (1);

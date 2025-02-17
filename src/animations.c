@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:40:24 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/17 15:47:45 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:53:49 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	load_dead_images(t_game *game)
 	game->dead->dead_img[4] = mlx_texture_to_image(game->mlx,
 			game->dead->dead_text[4]);
 	mlx_resize_image(game->dead->dead_img[4], 20, 20);
-	game->dead->current_img = game->dead->dead_img[0];	
+	game->dead->current_img = game->dead->dead_img[0];
 }
 
 void	update_dead(t_game *game, double delta_time)
