@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:20:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 20:43:40 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:06:32 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	init_images_again(t_game *game)
 
 void	init_images_once_again(t_game *game)
 {
+	load_dead_images(game);
 	game->img->game_over_text = mlx_load_png("textures/game_over.png");
 	game->img->game_over_img = mlx_texture_to_image(game->mlx,
 			game->img->game_over_text);
@@ -97,7 +98,7 @@ void	init_images_once_again(t_game *game)
 	game->img->phrase_game_over_img = mlx_texture_to_image(game->mlx,
 			game->img->phrase_game_over_text);
 	mlx_resize_image(game->img->phrase_game_over_img,
-		((game->map->width * TILE) / 3) * 2, (game->map->height * TILE) / 3);
+		(game->map->width * TILE) / 4, (game->map->height * TILE) / 7);
 }
 
 void	init_map(t_map *map)

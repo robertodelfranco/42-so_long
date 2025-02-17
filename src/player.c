@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:41:07 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 20:47:19 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:13:08 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ void	ft_player(void *param)
 	if (game->player->pos_x == game->enemie->pos_x
 		&& game->player->pos_y == game->enemie->pos_y)
 		ft_handle_enemie(game);
+	if (game->game_over_flag == 1)
+	{
+		update_dead(game, delta_time);
+		if (game->player->current_frame == 5)
+			game->game_over_flag = 2;
+	}
 }
 
 void	update_frame(t_game *game, double delta_time)

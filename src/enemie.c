@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:58:20 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/14 20:51:37 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:02:31 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,27 @@ void	load_enemie_animation(t_game *game)
 	game->enemie->frames_text[5] = mlx_load_png("textures/goblin_6.png");
 	game->enemie->frames_img[5] = mlx_texture_to_image(game->mlx,
 			game->enemie->frames_text[5]);
-	game->enemie->current_frame = 0;
 	game->enemie->current_img = game->enemie->frames_img[0];
 	game->enemie->move_time = 0;
-	game->enemie->total_frames = 7;
 }
 
 void	ft_handle_enemie(t_game *game)
 {
 	game->map->moves++;
+	mlx_image_to_window(game->mlx, game->img->floor_img,
+		game->player->pos_x * TILE, game->player->pos_y * TILE);
+	if (game->map->map[game->player->pos_y][game->player->pos_x] == 'T')
+		mlx_image_to_window(game->mlx, game->img->tree_img,
+			game->player->pos_x * TILE, game->player->pos_y * TILE);
+	else if (game->map->map[game->player->pos_y][game->player->pos_x] != 'E')
+		game->map->map[game->player->pos_y][game->player->pos_x] = '0';
+	else
+		mlx_image_to_window(game->mlx, game->img->exit_img,
+			game->player->pos_x * TILE + 17, game->player->pos_y * TILE + 34);
 	mlx_image_to_window(game->mlx, game->img->game_over_img,
-		(game->map->width * TILE) / 6, (game->map->height * TILE) / 3);
+		((game->map->width * TILE) - (game->map->width * TILE / 3 * 2)) / 2, ft_abs((game->map->height * TILE) - (game->map->height * TILE / 3)) / 2);
 	mlx_image_to_window(game->mlx, game->img->phrase_game_over_img,
-		(game->map->width * TILE) / 5, (game->map->height * TILE) / 3);
+		((game->map->width * TILE) - (game->map->width * TILE / 4)) / 2, ((game->map->height * TILE) - (game->map->height * TILE / 4)) / 2);
 	game->game_over_flag = 1;
 	ft_printf("Game Over\n");
 }
