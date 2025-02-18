@@ -25,19 +25,19 @@ SRCS		=	./src/so_long.c \
 				./src/clear_mlx.c \
 				./src/errors.c
 
-SRCS_BONUS	=	./bonus/animations.c \
-				./bonus/clear_mlx.c \
-				./bonus/enemie.c \
-				./bonus/errors.c \
-				./bonus/flood_fill.c \
-				./bonus/handle_cases.c \
-				./bonus/handle_decorations.c \
-				./bonus/init.c \
-				./bonus/player.c \
+SRCS_BONUS	=	./bonus/animations_bonus.c \
+				./bonus/clear_mlx_bonus.c \
+				./bonus/enemie_bonus.c \
+				./bonus/errors_bonus.c \
+				./bonus/flood_fill_bonus.c \
+				./bonus/handle_cases_bonus.c \
+				./bonus/handle_decorations_bonus.c \
+				./bonus/init_bonus.c \
+				./bonus/player_bonus.c \
 				./bonus/so_long_bonus.c \
-				./bonus/utils.c \
-				./bonus/validate.c \
-				./bonus/window_images.c
+				./bonus/utils_bonus.c \
+				./bonus/validate_bonus.c \
+				./bonus/window_images_bonus.c
 
 OBJS		=	${SRCS:.c=.o}
 OBJS_BONUS	=	${SRCS_BONUS:.c=.o}
