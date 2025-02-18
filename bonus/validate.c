@@ -6,11 +6,11 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:56:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/18 15:29:52 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:34:32 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	parse_map(t_game *game)
 {
@@ -32,7 +32,9 @@ void	parse_map(t_game *game)
 				set_exit_position(game, i, j);
 			if (game->map->map[i][j] == 'P')
 				set_player_position(game, i, j);
-			if (!ft_strchr("01CEP", game->map->map[i][j]))
+			if (game->map->map[i][j] == 'I')
+				set_enemie_position(game, i, j);
+			if (!ft_strchr("01CEPI", game->map->map[i][j]))
 				message_error(EXIT_INVALID_CHAR, game);
 		}
 	}

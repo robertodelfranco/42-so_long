@@ -6,11 +6,11 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:15:27 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/18 15:46:17 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:58:47 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	delete_images(t_game *game)
 {
@@ -22,6 +22,8 @@ void	delete_images(t_game *game)
 	mlx_delete_image(game->mlx, game->img->collectable_img);
 	mlx_delete_image(game->mlx, game->img->mushroom_img);
 	mlx_delete_image(game->mlx, game->img->tree_img);
+	mlx_delete_image(game->mlx, game->img->ribbon_img);
+	mlx_delete_image(game->mlx, game->enemie->current_img);
 	mlx_delete_image(game->mlx, game->player->current_img);
 	free_animate_images(game);
 }
@@ -35,6 +37,13 @@ void	free_animate_images(t_game *game)
 	{
 		mlx_delete_texture(game->player->frames_text[i]);
 		mlx_delete_image(game->mlx, game->player->frames_img[i]);
+		mlx_delete_texture(game->enemie->frames_text[i]);
+		mlx_delete_image(game->mlx, game->enemie->frames_img[i]);
+		if (i < 5)
+		{	
+			mlx_delete_texture(game->dead->dead_text[i]);
+			mlx_delete_image(game->mlx, game->dead->dead_img[i]);
+		}
 	}
 }
 
@@ -44,7 +53,9 @@ void	free_and_close(t_game *game)
 	mlx_terminate(game->mlx);
 	ft_free(game->map->map, ft_ptrlen(game->map->map));
 	ft_free(game->map->map_copy, ft_ptrlen(game->map->map_copy));
+	free(game->dead);
 	free(game->player);
+	free(game->enemie);
 	free(game->img);
 	free(game->map);
 	free(game);

@@ -6,11 +6,11 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:22:58 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/18 15:44:45 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:58:47 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	ft_handle_exit(t_game *game, int x, int y)
 {
@@ -37,8 +37,6 @@ void	ft_handle_final_exit(t_game *game)
 		game->img->floor_img, game->player->pos_x * TILE,
 		game->player->pos_y * TILE);
 	game->map->moves++;
-	ft_printf("You finished the game with %d moves\n", game->map->moves);
-	ft_printf("You won!\n");
 	mlx_close_window(game->mlx);
 	free_and_close(game);
 }

@@ -6,11 +6,11 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:20:11 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/18 15:46:05 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:58:47 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	init_program(t_game *game)
 {
@@ -21,6 +21,7 @@ void	init_program(t_game *game)
 			game->map->height * TILE, "so_long", false);
 	init_images(game);
 	init_images_again(game);
+	init_images_once_again(game);
 	put_images_in_window(game);
 	put_mushroons(game, game->img->mushroom_img);
 	mlx_key_hook(game->mlx, main_move, game);
@@ -62,6 +63,7 @@ void	init_images(t_game *game)
 void	init_images_again(t_game *game)
 {
 	load_animate_images(game);
+	load_enemie_animation(game);
 	game->img->collectable_text = mlx_load_png("textures/collectable.png");
 	game->img->collectable_img = mlx_texture_to_image(game->mlx,
 			game->img->collectable_text);
@@ -76,6 +78,28 @@ void	init_images_again(t_game *game)
 			game->img->tree_text);
 	mlx_resize_image(game->img->tree_img, TILE, TILE);
 	mlx_delete_texture(game->img->tree_text);
+	game->img->ribbon_text = mlx_load_png("textures/ribbon.png");
+	game->img->ribbon_img = mlx_texture_to_image(game->mlx,
+			game->img->ribbon_text);
+	mlx_resize_image(game->img->ribbon_img, 192, 44);
+	mlx_delete_texture(game->img->ribbon_text);
+}
+
+void	init_images_once_again(t_game *game)
+{
+	load_dead_images(game);
+	game->img->game_over_text = mlx_load_png("textures/game_over.png");
+	game->img->game_over_img = mlx_texture_to_image(game->mlx,
+			game->img->game_over_text);
+	mlx_resize_image(game->img->game_over_img,
+		((game->map->width * TILE) / 3) * 2, (game->map->height * TILE) / 3);
+	mlx_delete_texture(game->img->game_over_text);
+	game->img->phrase_game_over_text = mlx_load_png("textures/phrase.png");
+	game->img->phrase_game_over_img = mlx_texture_to_image(game->mlx,
+			game->img->phrase_game_over_text);
+	mlx_resize_image(game->img->phrase_game_over_img,
+		(game->map->width * TILE) / 4, (game->map->height * TILE) / 7);
+	mlx_delete_texture(game->img->phrase_game_over_text);
 }
 
 void	init_map(t_map *map)

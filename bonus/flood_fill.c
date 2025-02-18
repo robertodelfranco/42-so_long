@@ -6,11 +6,11 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 17:45:22 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/18 15:38:33 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:58:47 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	copy_map(t_game *game)
 {
@@ -67,8 +67,8 @@ void	flood_fill(t_game *game, int x, int y)
 	if (game->map->map_copy[y][x] == '1' || game->map->map_copy[y][x] == 'X')
 		return ;
 	if (game->map->map_copy[y][x] == '0' || game->map->map_copy[y][x] == 'C'
-		|| game->map->map_copy[y][x] == 'E'
-			|| game->map->map_copy[y][x] == 'P')
+		|| game->map->map_copy[y][x] == 'E' || game->map->map_copy[y][x] == 'P'
+			|| game->map->map_copy[y][x] == 'I')
 	{
 		game->map->map_copy[y][x] = 'X';
 		flood_fill(game, x + 1, y);

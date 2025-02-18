@@ -6,11 +6,11 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 19:58:20 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/17 16:54:13 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:58:47 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	load_enemie_animation(t_game *game)
 {

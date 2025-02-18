@@ -1,5 +1,5 @@
 NAME		=	so_long
-#NAME_BONUS	=	so_long_bonus
+NAME_BONUS	=	so_long_bonus
 
 CC			=	cc
 FLAGS		=	-Wall -Werror -Wextra
@@ -9,7 +9,8 @@ LIBMLX		=	./MLX42
 
 LIBS		=	$(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm $(LIBFT)/libft.a
 
-HEADERS		=	-I $(current_lib)/Includes -I $(LIBMLX)/build -I Includes
+HEADERS		=	-I $(current_lib)/Includes -I $(LIBMLX)/build
+HEADER_BONUS=	-I $(current_lib)/Includes -I $(LIBMLX)/build
 
 SRCS		=	./src/so_long.c \
 				./src/validate.c \
@@ -20,12 +21,26 @@ SRCS		=	./src/so_long.c \
 				./src/handle_cases.c \
 				./src/handle_decorations.c \
 				./src/animations.c \
-				./src/enemie.c \
 				./src/flood_fill.c \
 				./src/clear_mlx.c \
 				./src/errors.c
 
+SRCS_BONUS	=	./bonus/animations.c \
+				./bonus/clear_mlx.c \
+				./bonus/enemie.c \
+				./bonus/errors.c \
+				./bonus/flood_fill.c \
+				./bonus/handle_cases.c \
+				./bonus/handle_decorations.c \
+				./bonus/init.c \
+				./bonus/player.c \
+				./bonus/so_long_bonus.c \
+				./bonus/utils.c \
+				./bonus/validate.c \
+				./bonus/window_images.c
+
 OBJS		=	${SRCS:.c=.o}
+OBJS_BONUS	=	${SRCS_BONUS:.c=.o}
 
 all: libmlx libft ${NAME}
 
@@ -41,13 +56,14 @@ ${NAME}: ${OBJS}
 %.o:%.c
 	${CC} ${FLAGS} ${HEADERS} -o $@ -c $<
 
-# bonus: libft ${NAME_BONUS}
+bonus: libft ${NAME_BONUS}
 
-#${NAME_BONUS}: ${OBJS_BONUS}
-#	$(CC) $(OBJS_BONUS) $(LIB) $(HEADERS) -o $(NAME_BONUS)
+${NAME_BONUS}: ${OBJS_BONUS}
+	$(CC) $(OBJS_BONUS) $(LIBS) $(HEADER_BONUS) -o $(NAME_BONUS)
 
 clean:
 	@rm -rf ${OBJS}
+	@rm -rf ${OBJS_BONUS}
 	@rm -rf $(LIBMLX)/build
 	@$(MAKE) -C $(LIBFT) clean
 
