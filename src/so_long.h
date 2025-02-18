@@ -6,7 +6,7 @@
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:28 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/18 15:54:58 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:26:23 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define EXIT_INVALID_FILE	-2
 # define EXIT_INVALID_EXTENTION	-3
 # define EXIT_INVALID_CHAR	-4
-# define EXIT_MUST_BE_RECTANGULAR	-5
+# define EXIT_MUST_BE_RECTANGULAR -5
 # define EXIT_TOO_SHORT	-6
 # define EXIT_MISSING_E	-7
 # define EXIT_MISSING_P	-8

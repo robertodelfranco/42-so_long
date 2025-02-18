@@ -56,7 +56,7 @@ ${NAME}: ${OBJS}
 %.o:%.c
 	${CC} ${FLAGS} ${HEADERS} -o $@ -c $<
 
-bonus: libft ${NAME_BONUS}
+bonus: libmlx libft ${NAME_BONUS}
 
 ${NAME_BONUS}: ${OBJS_BONUS}
 	$(CC) $(OBJS_BONUS) $(LIBS) $(HEADER_BONUS) -o $(NAME_BONUS)
