@@ -39,8 +39,10 @@ SRCS_BONUS	=	./bonus/animations_bonus.c \
 				./bonus/validate_bonus.c \
 				./bonus/window_images_bonus.c
 
-OBJS		=	${SRCS:.c=.o}
-OBJS_BONUS	=	${SRCS_BONUS:.c=.o}
+OBJS		=	$(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
+OBJS_BONUS	=	$(addprefix $(OBJ_DIR)/, $(notdir $(SRCS_BONUS:.c=.o)))
+OBJ_DIR		=	objs
+VPATH		=	./src:./bonus
 
 all: libmlx libft ${NAME}
 
@@ -53,7 +55,8 @@ libft:
 ${NAME}: ${OBJS}
 	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
-%.o:%.c
+$(OBJ_DIR)/%.o:%.c
+	@mkdir -p $(OBJ_DIR)
 	${CC} ${FLAGS} ${HEADERS} -o $@ -c $<
 
 bonus: libmlx libft ${NAME_BONUS}

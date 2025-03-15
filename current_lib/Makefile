@@ -59,13 +59,16 @@ HEADERS		=	./Includes
 AR			=	ar rcs
 RM			=	rm -rf
 
-OBJS		=	${SRCS:.c=.o}
+OBJS		=	$(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
+OBJ_DIR		=	objs
+VPATH		=	./libft:./gnl:./printf
 
 all: ${NAME}
 
 ${NAME}: ${OBJS}
 
-%.o:%.c ${HEADERS}
+$(OBJ_DIR)/%.o:%.c ${HEADERS}
+	@mkdir -p $(OBJ_DIR)
 	@${CC} ${FLAGS} -c $< -o $@
 	@${AR} ${NAME} $@
 
