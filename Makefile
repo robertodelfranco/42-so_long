@@ -73,4 +73,7 @@ fclean:	clean
 
 re: fclean all
 
+val:
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./so_long
+
 .PHONY: all clean fclean re libft bonus
