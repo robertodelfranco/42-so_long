@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../includes/so_long_bonus.h"
 
 void	load_animate_images(t_game *game)
 {
@@ -84,5 +84,22 @@ void	update_dead(t_game *game, double delta_time)
 			game->player->pos_x * TILE + 7, game->player->pos_y * TILE + 14);
 		game->player->current_frame = (game->player->current_frame + 1) % 5;
 		game->dead->move_time = 0;
+	}
+}
+
+void	disable_instances(mlx_image_t *img, int n_x, int n_y)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < img->count)
+	{
+		if (img->instances[i].x == n_x
+			&& img->instances[i].y == n_y)
+		{
+			img->instances[i].enabled = false;
+			break ;
+		}
+		i++;
 	}
 }

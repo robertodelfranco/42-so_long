@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../includes/so_long_bonus.h"
 
 void	init_program(t_game *game)
 {
@@ -100,15 +100,4 @@ void	init_images_once_again(t_game *game)
 	mlx_resize_image(game->img->phrase_game_over_img,
 		(game->map->width * TILE) / 4, (game->map->height * TILE) / 7);
 	mlx_delete_texture(game->img->phrase_game_over_text);
-}
-
-void	init_map(t_map *map)
-{
-	map->map = NULL;
-	map->width = 0;
-	map->height = 0;
-	map->c = 0;
-	map->p = 0;
-	map->e = 0;
-	map->moves = 0;
 }

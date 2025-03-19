@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../includes/so_long_bonus.h"
 
 void	ft_player(void *param)
 {
@@ -44,6 +44,8 @@ void	update_frame(t_game *game, double delta_time)
 	{
 		game->player->current_frame = (game->player->current_frame + 1)
 			% game->player->total_frames;
+		game->enemie->current_frame = (game->enemie->current_frame + 1)
+			% game->enemie->total_frames;
 		game->player->frame_time = 0;
 	}
 }
@@ -90,18 +92,17 @@ void	move_player(t_game *game, int x, int y, t_player *player)
 	if (game->map->map[player->pos_y + y][player->pos_x + x] == '1')
 		return ;
 	if (game->map->map[player->pos_y + y][player->pos_x + x] == 'C'
-			&& game->map->c == 1)
-		ft_handle_last_collectable(game, x, y);
-	else if (game->map->map[player->pos_y + y][player->pos_x + x] == 'T')
-		ft_handle_tree(game, x, y);
+			&& game->map->c_now == 1)
+		ft_handle_last_collectable(game, player->pos_x + x, player->pos_y + y);
 	else if (game->map->map[player->pos_y + y][player->pos_x + x] == 'C')
-		ft_handle_collectable(game, x, y);
+		ft_handle_collectable(game, player->pos_x + x, player->pos_y + y);
 	else if (game->map->map[player->pos_y + y][player->pos_x + x] == 'E')
-		ft_handle_exit(game, x, y);
+		ft_handle_exit(game, player->pos_x + x, player->pos_y + y);
 	else if (game->map->map[player->pos_y + y][player->pos_x + x] == 'N')
 		ft_handle_final_exit(game);
 	else
-		ft_handle_common_move(game, x, y);
+		ft_handle_common_move(game, player->pos_x + x, player->pos_y + y);
+	game->map->map[game->player->pos_y][game->player->pos_x] = 'P';
 	nb = ft_itoa(game->map->moves);
 	moves = ft_strjoin("Moves: ", nb);
 	mlx_image_to_window(game->mlx, game->img->ribbon_img, 0, 0 + 2);

@@ -50,6 +50,8 @@ typedef struct s_enemie
 	mlx_texture_t	*frames_text[6];
 	mlx_image_t		*frames_img[6];
 	mlx_image_t		*current_img;
+	int				current_frame;
+	int				total_frames;
 	int				e;
 	int				pos_x;
 	int				pos_y;
@@ -79,6 +81,7 @@ typedef struct s_map
 	int			height;
 	int			p;
 	int			c;
+	int			c_now;
 	int			e;
 	int			pos_x_e;
 	int			pos_y_e;
@@ -115,6 +118,7 @@ typedef struct s_game
 {
 	void		*mlx;
 	char		*file;
+	int			first;
 	t_map		*map;
 	t_image		*img;
 	t_player	*player;
@@ -138,11 +142,11 @@ void	ft_free(char **ptr_matrix, int j);
 void	free_file(t_game *game);
 
 // init //
-void	init_map(t_map *map);
 void	init_images(t_game *game);
 void	init_program(t_game *game);
 void	init_images_again(t_game *game);
 void	init_images_once_again(t_game *game);
+void	disable_instances(mlx_image_t *img, int n_x, int n_y);
 
 // player //
 void	ft_player(void *param);
@@ -159,7 +163,6 @@ void	set_exit_position(t_game *game, int i, int j);
 void	set_player_position(t_game *game, int i, int j);
 
 // window_images //
-void	map_restore(t_game *game);
 void	render_player(t_game *game);
 void	put_images_in_window(t_game *game);
 void	put_wall(t_game *game, int i, int j);
@@ -174,7 +177,6 @@ void	ft_handle_last_collectable(t_game *game, int x, int y);
 
 // handle_decorations //
 void	put_mushroons(t_game *game, mlx_image_t *mushroom_img);
-void	ft_handle_tree(t_game *game, int move_x, int move_y);
 void	put_tree(t_game *game, int i, int j, int *flag);
 void	mushroom_rand(t_game *game, int i, int flag);
 void	find_tile(t_game *game);

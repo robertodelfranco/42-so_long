@@ -13,7 +13,6 @@ HEADERS		=	-I $(current_lib)/Includes -I $(LIBMLX)/build
 HEADER_BONUS=	-I $(current_lib)/Includes -I $(LIBMLX)/build
 
 SRCS		=	./src/so_long.c \
-				./src/validate.c \
 				./src/window_images.c \
 				./src/player.c \
 				./src/utils.c \
@@ -21,28 +20,29 @@ SRCS		=	./src/so_long.c \
 				./src/handle_cases.c \
 				./src/handle_decorations.c \
 				./src/animations.c \
-				./src/flood_fill.c \
-				./src/clear_mlx.c \
-				./src/errors.c
+				./src/validation/validate.c \
+				./src/validation/flood_fill.c \
+				./src/free/clear_mlx.c \
+				./src/free/errors.c
 
 SRCS_BONUS	=	./bonus/animations_bonus.c \
-				./bonus/clear_mlx_bonus.c \
 				./bonus/enemie_bonus.c \
-				./bonus/errors_bonus.c \
-				./bonus/flood_fill_bonus.c \
 				./bonus/handle_cases_bonus.c \
 				./bonus/handle_decorations_bonus.c \
 				./bonus/init_bonus.c \
 				./bonus/player_bonus.c \
 				./bonus/so_long_bonus.c \
 				./bonus/utils_bonus.c \
-				./bonus/validate_bonus.c \
-				./bonus/window_images_bonus.c
+				./bonus/window_images_bonus.c \
+				./bonus/validation/validate_bonus.c \
+				./bonus/validation/flood_fill_bonus.c \
+				./bonus/free/clear_mlx_bonus.c \
+				./bonus/free/errors_bonus.c
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
 OBJS_BONUS	=	$(addprefix $(OBJ_DIR)/, $(notdir $(SRCS_BONUS:.c=.o)))
 OBJ_DIR		=	objs
-VPATH		=	./src:./bonus
+VPATH		=	./src:./src/validation:./src/free:./bonus:./bonus/validation:./bonus/free
 
 all: libmlx libft ${NAME}
 

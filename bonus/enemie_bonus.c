@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../includes/so_long_bonus.h"
 
 void	load_enemie_animation(t_game *game)
 {
@@ -32,23 +32,16 @@ void	load_enemie_animation(t_game *game)
 	game->enemie->frames_text[5] = mlx_load_png("textures/goblin_6.png");
 	game->enemie->frames_img[5] = mlx_texture_to_image(game->mlx,
 			game->enemie->frames_text[5]);
+	game->enemie->current_frame = 0;
 	game->enemie->current_img = game->enemie->frames_img[0];
+	game->enemie->total_frames = 6;
 	game->enemie->move_time = 0;
 }
 
 void	ft_handle_enemie(t_game *game)
 {
 	game->map->moves++;
-	mlx_image_to_window(game->mlx, game->img->floor_img,
-		game->player->pos_x * TILE, game->player->pos_y * TILE);
-	if (game->map->map[game->player->pos_y][game->player->pos_x] == 'T')
-		mlx_image_to_window(game->mlx, game->img->tree_img,
-			game->player->pos_x * TILE, game->player->pos_y * TILE);
-	else if (game->map->map[game->player->pos_y][game->player->pos_x] != 'E')
-		game->map->map[game->player->pos_y][game->player->pos_x] = '0';
-	else
-		mlx_image_to_window(game->mlx, game->img->exit_img,
-			game->player->pos_x * TILE + 17, game->player->pos_y * TILE + 34);
+	mlx_delete_image(game->mlx, game->player->current_img);
 	mlx_image_to_window(game->mlx, game->img->game_over_img,
 		((game->map->width * TILE) - (game->map->width * TILE / 3 * 2)) / 2,
 		((game->map->height * TILE) - (game->map->height * TILE / 3)) / 2);
@@ -100,10 +93,14 @@ void	update_enemy(t_game *game, double delta_time)
 	{
 		dx = game->player->pos_x - game->enemie->pos_x;
 		dy = game->player->pos_y - game->enemie->pos_y;
-		mlx_delete_image(game->mlx, game->enemie->current_img);
+		if (game->enemie->current_img)
+			mlx_delete_image(game->mlx, game->enemie->current_img);
 		game->enemie->current_img = mlx_texture_to_image(game->mlx,
-				game->enemie->frames_text[game->player->current_frame]);
+				game->enemie->frames_text[game->enemie->current_frame]);
+		mlx_resize_image(game->enemie->current_img, 50, 50);
 		ft_move_enemie(game, dx, dy, game->enemie);
+		mlx_image_to_window(game->mlx, game->enemie->current_img,
+			game->enemie->pos_x * TILE + 7, game->enemie->pos_y * TILE + 14);
 		game->enemie->move_time = 0;
 	}
 }

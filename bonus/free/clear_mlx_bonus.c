@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../../includes/so_long_bonus.h"
 
 void	delete_images(t_game *game)
 {

@@ -10,24 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
-
-void	ft_handle_tree(t_game *game, int move_x, int move_y)
-{
-	mlx_image_to_window(game->mlx, game->img->floor_img,
-		game->player->pos_x * TILE, game->player->pos_y * TILE);
-	if (game->map->map[game->player->pos_y][game->player->pos_x] == 'T')
-		mlx_image_to_window(game->mlx, game->img->tree_img,
-			game->player->pos_x * TILE, game->player->pos_y * TILE);
-	else if (game->map->map[game->player->pos_y][game->player->pos_x] != 'E')
-		game->map->map[game->player->pos_y][game->player->pos_x] = '0';
-	else
-		mlx_image_to_window(game->mlx, game->img->exit_img,
-			game->player->pos_x * TILE + 17, game->player->pos_y * TILE + 34);
-	game->map->moves++;
-	game->player->pos_x += move_x;
-	game->player->pos_y += move_y;
-}
+#include "../includes/so_long_bonus.h"
 
 void	put_tree(t_game *game, int i, int j, int *flag)
 {

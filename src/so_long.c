@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 int	main(int c, char **v)
 {
@@ -21,7 +21,6 @@ int	main(int c, char **v)
 	game = ft_calloc(1, sizeof(t_game));
 	game->player = ft_calloc(1, sizeof(t_player));
 	game->map = ft_calloc(1, sizeof(t_map));
-	init_map(game->map);
 	validate_map(v[1], game);
 	init_program(game);
 	free_and_close(game);

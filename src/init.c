@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 void	init_program(t_game *game)
 {
@@ -76,15 +76,4 @@ void	init_images_again(t_game *game)
 			game->img->tree_text);
 	mlx_resize_image(game->img->tree_img, TILE, TILE);
 	mlx_delete_texture(game->img->tree_text);
-}
-
-void	init_map(t_map *map)
-{
-	map->map = NULL;
-	map->width = 0;
-	map->height = 0;
-	map->c = 0;
-	map->p = 0;
-	map->e = 0;
-	map->moves = 0;
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   errors_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdel-fra <rdel-fra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:45:35 by rdel-fra          #+#    #+#             */
-/*   Updated: 2025/02/18 15:40:48 by rdel-fra         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:19:09 by rdel-fra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../../includes/so_long_bonus.h"
 
 void	message_error(short error_code, t_game *game)
 {
@@ -43,6 +43,8 @@ void	message_error(short error_code, t_game *game)
 
 void	free_file(t_game *game)
 {
+	free(game->dead);
+	free(game->enemie);
 	free(game->player);
 	free(game->map);
 	free(game);
@@ -54,7 +56,9 @@ void	free_and_close_error(t_game *game, short error_code)
 	ft_free(game->map->map, ft_ptrlen(game->map->map));
 	if (error_code == EXIT_NO_PATH)
 		ft_free(game->map->map_copy, ft_ptrlen(game->map->map_copy));
+	free(game->dead);
 	free(game->player);
+	free(game->enemie);
 	free(game->map);
 	free(game);
 	exit(2);
