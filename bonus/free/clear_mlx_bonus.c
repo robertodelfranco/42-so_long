@@ -25,6 +25,8 @@ void	delete_images(t_game *game)
 	mlx_delete_image(game->mlx, game->img->ribbon_img);
 	mlx_delete_image(game->mlx, game->enemie->current_img);
 	mlx_delete_image(game->mlx, game->player->current_img);
+	mlx_delete_image(game->mlx, game->img->game_win_img);
+	mlx_delete_image(game->mlx, game->img->phrase_game_win_img);
 	free_animate_images(game);
 }
 
@@ -40,7 +42,7 @@ void	free_animate_images(t_game *game)
 		mlx_delete_texture(game->enemie->frames_text[i]);
 		mlx_delete_image(game->mlx, game->enemie->frames_img[i]);
 		if (i < 5)
-		{	
+		{
 			mlx_delete_texture(game->dead->dead_text[i]);
 			mlx_delete_image(game->mlx, game->dead->dead_img[i]);
 		}

@@ -112,6 +112,10 @@ typedef struct s_image
 	mlx_image_t		*game_over_img;
 	mlx_texture_t	*phrase_game_over_text;
 	mlx_image_t		*phrase_game_over_img;
+	mlx_texture_t	*phrase_game_win_text;
+	mlx_image_t		*phrase_game_win_img;
+	mlx_texture_t	*game_win_text;
+	mlx_image_t		*game_win_img;
 }		t_image;
 
 typedef struct s_game
@@ -126,6 +130,7 @@ typedef struct s_game
 	t_dead		*dead;
 	int			enemie_flag;
 	int			game_over_flag;
+	int			game_win_flag;
 }		t_game;
 
 // validate //

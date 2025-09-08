@@ -50,6 +50,14 @@ void	ft_handle_last_collectable(t_game *game, int x, int y)
 void	ft_handle_final_exit(t_game *game)
 {
 	game->map->moves++;
-	mlx_close_window(game->mlx);
-	free_and_close(game);
+	mlx_delete_image(game->mlx, game->enemie->current_img);
+	mlx_delete_image(game->mlx, game->player->current_img);
+	mlx_image_to_window(game->mlx, game->img->game_win_img,
+		((game->map->width * TILE) - (game->map->width * TILE / 3 * 2)) / 2,
+		((game->map->height * TILE) - (game->map->height * TILE / 3)) / 2);
+	mlx_image_to_window(game->mlx, game->img->phrase_game_win_img,
+		((game->map->width * TILE) - (game->map->width * TILE / 4)) / 2,
+		((game->map->height * TILE) - (game->map->height * TILE / 4)) / 2);
+	game->game_win_flag = 1;
+	ft_printf("You Win!\n");
 }

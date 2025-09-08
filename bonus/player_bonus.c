@@ -19,6 +19,8 @@ void	ft_player(void *param)
 
 	delta_time = get_delta_time();
 	game = param;
+	if (game->game_win_flag == 1)
+		return ;
 	if (game->game_over_flag == 1)
 	{
 		update_dead(game, delta_time);
