@@ -1,14 +1,14 @@
 # so_long
 
-## Descrição / Description
+## Descrição
 So_long é um dos três primeiros projetos gráficos da 42, eu escolhi por ter mais afinidade e gosto por jogo, ele consiste em fazer uma representação gráfica de um jogo 2D. O objetivo do projeto é ser jogável, para isso temos que garantir que o personagem tenha pelo menos um caminho válido para pegar todos os coletáveis e liberar a saída.
 
-## Sumário / Summary
+## Sumário
 - [Recursos](#recursos)
 - [Instalação](#instalação)
 - [Uso](#uso)
 
-## Recursos / Features
+## Recursos
 - Garantir que o personagem possa coletar todos os itens e liberar a saída (flood fill).
 - **Bônus:**
     - Animação de sprite: o personagem e o inimigo são atualizados com frames sequenciais para simular o movimento.
@@ -35,13 +35,14 @@ Este projeto depende da biblioteca gráfica **MLX42**, que requer as seguintes d
     cmake --build build
     sudo cmake --install build
 
-## Uso / Usage
+## Uso
 
 - Controles:
     - W move para cima
     - S move para baixo
     - A move para a esquerda
     - D move para a direita
+    - ESC fecha a janela do jogo
 
 Para rodar o jogo:
   ```bash
