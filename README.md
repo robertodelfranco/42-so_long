@@ -9,6 +9,8 @@ So_long é um dos três primeiros projetos gráficos da 42, eu escolhi por ter m
 - [Uso](#uso)
 
 ## Recursos
+- Contador de movimentos (passos) do jogador.
+- Diferentes sprites pro chão (0), parede (1) e personagem (P).
 - Garantir que o personagem possa coletar todos os itens e liberar a saída (flood fill).
 - **Bônus:**
     - Animação de sprite: o personagem e o inimigo são atualizados com frames sequenciais para simular o movimento.
