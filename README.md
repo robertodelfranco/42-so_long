@@ -51,4 +51,7 @@ Este projeto depende da biblioteca gráfica **MLX42**, que requer as seguintes d
 Para rodar o jogo:
   ```bash
     make bonus
-    ./so_long_bonus maps/bonus_maps/mov_small.ber
+    ./so_long_bonus maps/bonus_maps/easy.ber
+    ./so_long_bonus maps/bonus_maps/normal.ber
+    ./so_long_bonus maps/bonus_maps/hard.ber
+    ./so_long_bonus maps/bonus_maps/very_hard.ber
