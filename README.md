@@ -10,13 +10,15 @@ So_long é um dos três primeiros projetos gráficos da 42, eu escolhi por ter m
 
 ## Recursos
 - Contador de movimentos (passos) do jogador.
-- Diferentes sprites pro chão (0), parede (1) e personagem (P).
+- Diferentes sprites pro chão (0), parede (1), Personagem (P), Inimigo (E), Coletáveis (C) e Decorações (arvores e cogumelos).
 - Garantir que o personagem possa coletar todos os itens e liberar a saída (flood fill).
 - **Bônus:**
+    - Contador de movimentos (passos) aparece na tela.
+    - Implementação da instância Z para aspecto de profundidade dos objetos.
     - Animação de sprite: o personagem e o inimigo são atualizados com frames sequenciais para simular o movimento.
-    - Inimigo com perseguição: segue o jogador ininterruptamente.
+    - Inimigo com perseguição: segue o jogador ininterruptamente pelo mapa.
     - Animações de fim de jogo: vitória ou derrota com efeitos visuais.
-    - Display: cogumelos e árvores aparecem aleatoriamente no mapa.
+    - Display: cogumelos (nas paredes) e árvores (no chão) aparecem de forma aleatório dependendo do tamanho do mapa.
 
 ## Instalação
 
