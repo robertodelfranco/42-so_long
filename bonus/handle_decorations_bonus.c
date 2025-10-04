@@ -14,18 +14,19 @@
 
 void	put_tree(t_game *game, int i, int j, int *flag)
 {
-	if (game->map->map[i][j] == '0' && *flag == 0)
+	if (game->map->map[i][j] == '0' && *flag == 0 && j != 1 && j != game->map->width - 2)
 	{
 		*flag = 1;
 		game->map->map[i][j] = 'T';
-		mlx_image_to_window(game->mlx, game->img->tree_img, j * TILE, i * TILE);
+		mlx_image_to_window(game->mlx, game->img->tree_img,
+			j * TILE - 16, i * TILE);
 	}
-	else if (game->map->map[i][game->map->width - j - 1] == '0' && *flag == 1)
+	else if (game->map->width - j - 1 != 1 && game->map->map[i][game->map->width - j - 1] == '0' && *flag == 1)
 	{
 		*flag = 2;
 		game->map->map[i][game->map->width - j - 1] = 'T';
 		mlx_image_to_window(game->mlx, game->img->tree_img,
-			(game->map->width - j - 1) * TILE, i * TILE);
+			(game->map->width - j - 1) * TILE - 16, i * TILE);
 	}
 }
 

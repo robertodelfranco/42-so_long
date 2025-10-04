@@ -4,13 +4,13 @@ NAME_BONUS	=	so_long_bonus
 CC			=	cc
 FLAGS		=	-Wall -Werror -Wextra
 
-LIBFT		=	./current_lib
+LIBFT		=	./lib
 LIBMLX		=	./MLX42
 
 LIBS		=	$(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm $(LIBFT)/libft.a
 
-HEADERS		=	-I $(current_lib)/Includes -I $(LIBMLX)/build
-HEADER_BONUS=	-I $(current_lib)/Includes -I $(LIBMLX)/build
+HEADERS		=	-I $(LIBFT)/Includes -I $(LIBMLX)/build
+HEADER_BONUS=	-I $(LIBFT)/Includes -I $(LIBMLX)/build
 
 SRCS		=	./src/so_long.c \
 				./src/window_images.c \
@@ -73,6 +73,7 @@ clean:
 fclean:	clean
 	@rm -rf ${NAME} ${NAME_BONUS}
 	@$(MAKE) -C $(LIBFT) fclean
+	rm -rf $(OBJ_DIR)
 
 re: fclean all
 

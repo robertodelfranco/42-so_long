@@ -31,8 +31,7 @@ void	ft_player(void *param)
 		return ;
 	update_frame(game, delta_time);
 	render_player(game);
-	if (game->enemie->e > 0
-		&& ft_strnstr(game->file, "mov", ft_strlen(game->file)))
+	if (game->enemie->e > 0)
 		update_enemy(game, delta_time);
 	if (game->player->pos_x == game->enemie->pos_x
 		&& game->player->pos_y == game->enemie->pos_y)
@@ -52,17 +51,33 @@ void	update_frame(t_game *game, double delta_time)
 	}
 }
 
-void	main_move(mlx_key_data_t keydata, void *param)
+static void	move_player(t_game *game, double x, double y, t_player *player)
 {
-	t_game	*game;
-	double	delta_time;
+	char	*moves;
+	char	*nb;
 
-	game = param;
-	delta_time = get_delta_time_again();
-	set_hooks(keydata, game, delta_time);
+	if (game->map->map[(int)(player->pos_y + y)][(int)(player->pos_x + x)] == '1')
+		return ;
+	if (game->map->map[(int)(player->pos_y + y)][(int)(player->pos_x + x)] == 'C'
+			&& game->map->c_now == 1)
+		ft_handle_last_collectable(game, (player->pos_x + x), (player->pos_y + y));
+	else if (game->map->map[(int)(player->pos_y + y)][(int)(player->pos_x + x)] == 'C')
+		ft_handle_collectable(game, (player->pos_x + x), (player->pos_y + y));
+	else if (game->map->map[(int)(player->pos_y + y)][(int)(player->pos_x + x)] == 'E')
+		ft_handle_exit(game, (player->pos_x + x), (player->pos_y + y));
+	else if (game->map->map[(int)(player->pos_y + y)][(int)(player->pos_x + x)] == 'N')
+		ft_handle_final_exit(game);
+	else
+		ft_handle_common_move(game, (player->pos_x + x), (player->pos_y + y));
+	nb = ft_itoa(game->map->moves);
+	moves = ft_strjoin("Moves: ", nb);
+	mlx_image_to_window(game->mlx, game->img->ribbon_img, 0, 0 + 2);
+	mlx_put_string(game->mlx, moves, 46, 10);
+	free(moves);
+	free(nb);
 }
 
-void	set_hooks(mlx_key_data_t keydata, t_game *game, double delta_time)
+static void	set_hooks(mlx_key_data_t keydata, t_game *game, double delta_time)
 {
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
 	{
@@ -75,40 +90,23 @@ void	set_hooks(mlx_key_data_t keydata, t_game *game, double delta_time)
 			if (keydata.key == MLX_KEY_ESCAPE)
 				mlx_close_window(game->mlx);
 			else if (keydata.key == MLX_KEY_UP && game->game_over_flag == 0)
-				move_player(game, 0, -1, game->player);
+				move_player(game, 0, -0.5, game->player);
 			else if (keydata.key == MLX_KEY_DOWN && game->game_over_flag == 0)
-				move_player(game, 0, 1, game->player);
+				move_player(game, 0, 0.5, game->player);
 			else if (keydata.key == MLX_KEY_LEFT && game->game_over_flag == 0)
-				move_player(game, -1, 0, game->player);
+				move_player(game, -0.5, 0, game->player);
 			else if (keydata.key == MLX_KEY_RIGHT && game->game_over_flag == 0)
-				move_player(game, 1, 0, game->player);
+				move_player(game, 0.5, 0, game->player);
 		}
 	}
 }
 
-void	move_player(t_game *game, int x, int y, t_player *player)
+void	main_move(mlx_key_data_t keydata, void *param)
 {
-	char	*moves;
-	char	*nb;
+	t_game	*game;
+	double	delta_time;
 
-	if (game->map->map[player->pos_y + y][player->pos_x + x] == '1')
-		return ;
-	if (game->map->map[player->pos_y + y][player->pos_x + x] == 'C'
-			&& game->map->c_now == 1)
-		ft_handle_last_collectable(game, player->pos_x + x, player->pos_y + y);
-	else if (game->map->map[player->pos_y + y][player->pos_x + x] == 'C')
-		ft_handle_collectable(game, player->pos_x + x, player->pos_y + y);
-	else if (game->map->map[player->pos_y + y][player->pos_x + x] == 'E')
-		ft_handle_exit(game, player->pos_x + x, player->pos_y + y);
-	else if (game->map->map[player->pos_y + y][player->pos_x + x] == 'N')
-		ft_handle_final_exit(game);
-	else
-		ft_handle_common_move(game, player->pos_x + x, player->pos_y + y);
-	game->map->map[game->player->pos_y][game->player->pos_x] = 'P';
-	nb = ft_itoa(game->map->moves);
-	moves = ft_strjoin("Moves: ", nb);
-	mlx_image_to_window(game->mlx, game->img->ribbon_img, 0, 0 + 2);
-	mlx_put_string(game->mlx, moves, 46, 10);
-	free(moves);
-	free(nb);
+	game = param;
+	delta_time = get_delta_time_again();
+	set_hooks(keydata, game, delta_time);
 }

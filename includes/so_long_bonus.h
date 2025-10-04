@@ -13,13 +13,14 @@
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
-# include "../current_lib/Includes/get_next_line_bonus.h"
-# include "../current_lib/Includes/ft_printf_bonus.h"
+# include "../lib/Includes/get_next_line_bonus.h"
+# include "../lib/Includes/ft_printf_bonus.h"
 # include "../MLX42/include/MLX42/MLX42.h"
-# include "../current_lib/Includes/libft.h"
+# include "../lib/Includes/libft.h"
 # include <stdbool.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <math.h>
 
 # define TILE 64
 
@@ -53,8 +54,8 @@ typedef struct s_enemie
 	int				current_frame;
 	int				total_frames;
 	int				e;
-	int				pos_x;
-	int				pos_y;
+	double			pos_x;
+	double			pos_y;
 	double			move_delay;
 	double			move_time;
 }			t_enemie;
@@ -65,8 +66,8 @@ typedef struct s_player
 	mlx_image_t		*current_img;
 	int				current_frame;
 	int				total_frames;
-	int				pos_x;
-	int				pos_y;
+	double			pos_x;
+	double			pos_y;
 	double			frame_move_delay;
 	double			frame_time;
 	double			move_delay;
@@ -151,14 +152,11 @@ void	init_images(t_game *game);
 void	init_program(t_game *game);
 void	init_images_again(t_game *game);
 void	init_images_once_again(t_game *game);
-void	disable_instances(mlx_image_t *img, int n_x, int n_y);
 
 // player //
 void	ft_player(void *param);
 void	update_frame(t_game *game, double delta_time);
 void	main_move(mlx_key_data_t keydata, void *param);
-void	set_hooks(mlx_key_data_t keydata, t_game *game, double delta_time);
-void	move_player(t_game *game, int move_x, int move_y, t_player *player);
 
 // utils //
 int		ft_abs(int n);
@@ -172,13 +170,14 @@ void	render_player(t_game *game);
 void	put_images_in_window(t_game *game);
 void	put_wall(t_game *game, int i, int j);
 void	put_exits(t_game *game, int i, int j);
+bool	has_a_tree(t_game *game, double x, double y);
 
 // handle_cases //
 void	ft_handle_final_exit(t_game *game);
-void	ft_handle_exit(t_game *game, int x, int y);
-void	ft_handle_common_move(t_game *game, int x, int y);
-void	ft_handle_collectable(t_game *game, int x, int y);
-void	ft_handle_last_collectable(t_game *game, int x, int y);
+void	ft_handle_exit(t_game *game, double x, double y);
+void	ft_handle_common_move(t_game *game, double x, double y);
+void	ft_handle_collectable(t_game *game, double x, double y);
+void	ft_handle_last_collectable(t_game *game, double x, double y);
 
 // handle_decorations //
 void	put_mushroons(t_game *game, mlx_image_t *mushroom_img);
@@ -190,6 +189,9 @@ void	find_tile(t_game *game);
 void	load_dead_images(t_game *game);
 void	load_animate_images(t_game *game);
 void	update_dead(t_game *game, double delta_time);
+void	set_depth(mlx_image_t *img, int depth);
+bool	disable_instances(mlx_image_t *img, double n_x, double n_y);
+
 
 // enemie //
 void	ft_handle_enemie(t_game *game);

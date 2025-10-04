@@ -13,10 +13,10 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../current_lib/Includes/get_next_line_bonus.h"
-# include "../current_lib/Includes/ft_printf_bonus.h"
+# include "../lib/Includes/get_next_line_bonus.h"
+# include "../lib/Includes/ft_printf_bonus.h"
 # include "../MLX42/include/MLX42/MLX42.h"
-# include "../current_lib/Includes/libft.h"
+# include "../lib/Includes/libft.h"
 # include <stdbool.h>
 # include <stdlib.h>
 # include <fcntl.h>

@@ -61,34 +61,30 @@ void	set_enemie_position(t_game *game, int i, int j)
 	game->dead->move_time = 0;
 }
 
-void	ft_move_enemie(t_game *game, int dx, int dy, t_enemie *enemie)
+static void	ft_move_enemie(t_game *game, double dx, double dy, t_enemie *enemie)
 {
-	if ((game->map->map[enemie->pos_y][enemie->pos_x + 1] != '1'
-		|| game->map->map[enemie->pos_y][enemie->pos_x - 1] != '1') &&
-			ft_abs(dx) > ft_abs(dy))
-	{
-		if (dx > 0 && game->map->map[enemie->pos_y][enemie->pos_x + 1] != '1')
-			game->enemie->pos_x += 1;
-		else if (game->map->map[enemie->pos_y][enemie->pos_x - 1] != '1')
-			game->enemie->pos_x -= 1;
+	if (fabs(dx) > fabs(dy)) {
+		if (dx > 0 && game->map->map[(int)enemie->pos_y][(int)(enemie->pos_x + 0.5)] != '1')
+			enemie->pos_x += 0.5;
+		else if (game->map->map[(int)enemie->pos_y][(int)(enemie->pos_x - 0.5)] != '1')
+			enemie->pos_x -= 0.5;
 	}
-	else if ((game->map->map[enemie->pos_y + 1][enemie->pos_x] != '1'
-		|| game->map->map[enemie->pos_y - 1][enemie->pos_x] != '1'))
+	else
 	{
-		if (dy > 0 && game->map->map[enemie->pos_y + 1][enemie->pos_x] != '1')
-			game->enemie->pos_y += 1;
-		else if (game->map->map[enemie->pos_y - 1][enemie->pos_x] != '1')
-			game->enemie->pos_y -= 1;
+		if (dy > 0 && game->map->map[(int)(enemie->pos_y + 0.5)][(int)enemie->pos_x] != '1')
+			enemie->pos_y += 0.5;
+		else if (game->map->map[(int)(enemie->pos_y - 0.5)][(int)enemie->pos_x] != '1')
+			enemie->pos_y -= 0.5;
 	}
 }
 
 void	update_enemy(t_game *game, double delta_time)
 {
-	int	dx;
-	int	dy;
+	double	dx;
+	double	dy;
 
 	game->enemie->move_time += delta_time;
-	game->enemie->move_delay = 0.3;
+	game->enemie->move_delay = 0.2;
 	if (game->enemie->move_time >= game->enemie->move_delay)
 	{
 		dx = game->player->pos_x - game->enemie->pos_x;
@@ -97,10 +93,14 @@ void	update_enemy(t_game *game, double delta_time)
 			mlx_delete_image(game->mlx, game->enemie->current_img);
 		game->enemie->current_img = mlx_texture_to_image(game->mlx,
 				game->enemie->frames_text[game->enemie->current_frame]);
-		mlx_resize_image(game->enemie->current_img, 50, 50);
+		mlx_resize_image(game->enemie->current_img, 32, 32);
 		ft_move_enemie(game, dx, dy, game->enemie);
 		mlx_image_to_window(game->mlx, game->enemie->current_img,
-			game->enemie->pos_x * TILE + 7, game->enemie->pos_y * TILE + 14);
+			game->enemie->pos_x * TILE, game->enemie->pos_y * TILE);
+		if (has_a_tree(game, game->enemie->pos_x, game->enemie->pos_y))
+			mlx_set_instance_depth(&game->enemie->current_img->instances[0], -1);
+		else
+			mlx_set_instance_depth(&game->enemie->current_img->instances[0], 1);
 		game->enemie->move_time = 0;
 	}
 }

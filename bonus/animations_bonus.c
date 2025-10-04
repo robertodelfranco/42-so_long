@@ -16,22 +16,22 @@ void	load_animate_images(t_game *game)
 {
 	game->player->frames_text[0] = mlx_load_png("textures/warrior_1.png");
 	game->player->frames_img[0] = mlx_texture_to_image(game->mlx,
-			game->player->frames_text[0]);
+		game->player->frames_text[0]);
 	game->player->frames_text[1] = mlx_load_png("textures/warrior_2.png");
 	game->player->frames_img[1] = mlx_texture_to_image(game->mlx,
-			game->player->frames_text[1]);
+		game->player->frames_text[1]);
 	game->player->frames_text[2] = mlx_load_png("textures/warrior_3.png");
 	game->player->frames_img[2] = mlx_texture_to_image(game->mlx,
-			game->player->frames_text[2]);
+		game->player->frames_text[2]);
 	game->player->frames_text[3] = mlx_load_png("textures/warrior_4.png");
 	game->player->frames_img[3] = mlx_texture_to_image(game->mlx,
-			game->player->frames_text[3]);
+		game->player->frames_text[3]);
 	game->player->frames_text[4] = mlx_load_png("textures/warrior_5.png");
 	game->player->frames_img[4] = mlx_texture_to_image(game->mlx,
-			game->player->frames_text[4]);
+		game->player->frames_text[4]);
 	game->player->frames_text[5] = mlx_load_png("textures/warrior_6.png");
 	game->player->frames_img[5] = mlx_texture_to_image(game->mlx,
-			game->player->frames_text[5]);
+		game->player->frames_text[5]);
 	game->player->current_frame = 0;
 	game->player->current_img = game->player->frames_img[0];
 	game->player->total_frames = 6;
@@ -81,13 +81,13 @@ void	update_dead(t_game *game, double delta_time)
 		game->dead->current_img = mlx_texture_to_image(game->mlx,
 				game->dead->dead_text[game->player->current_frame]);
 		mlx_image_to_window(game->mlx, game->dead->current_img,
-			game->player->pos_x * TILE + 7, game->player->pos_y * TILE + 14);
+			game->player->pos_x * TILE, game->player->pos_y * TILE);
 		game->player->current_frame = (game->player->current_frame + 1) % 5;
 		game->dead->move_time = 0;
 	}
 }
 
-void	disable_instances(mlx_image_t *img, int n_x, int n_y)
+bool	disable_instances(mlx_image_t *img, double n_x, double n_y)
 {
 	size_t	i;
 
@@ -95,11 +95,24 @@ void	disable_instances(mlx_image_t *img, int n_x, int n_y)
 	while (i < img->count)
 	{
 		if (img->instances[i].x == n_x
-			&& img->instances[i].y == n_y)
+			&& img->instances[i].y == n_y && img->instances[i].enabled == true)
 		{
 			img->instances[i].enabled = false;
-			break ;
+			return (true);
 		}
+		i++;
+	}
+	return (false);
+}
+
+void	set_depth(mlx_image_t *img, int depth)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < img->count)
+	{
+		mlx_set_instance_depth(&img->instances[i], depth);
 		i++;
 	}
 }
